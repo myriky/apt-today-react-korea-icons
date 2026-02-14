@@ -16,3 +16,4 @@ export * from "./HanamSi";
 export * from "./UiwangSi";
 export * from "./GimpoSi";
 export * from "./PajuSi";
+export * from "./UijeongbuSi";
