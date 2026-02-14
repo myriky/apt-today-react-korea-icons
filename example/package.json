@@ -10,15 +10,17 @@
     "deploy": "yarn build && gh-pages -d dist"
   },
   "dependencies": {
+    "@apt.today/react-seoul-icons": "file:..",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@apt.today/react-seoul-icons": "file:.."
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.1.18",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
     "@vitejs/plugin-react": "^4.2.1",
     "gh-pages": "^6.1.0",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.3.3",
     "vite": "^5.0.8"
   }
