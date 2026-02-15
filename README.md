@@ -12,6 +12,17 @@
 
 [데모 페이지](https://myriky.github.io/apt-today-react-seoul-icons/)
 
+### 데모 사이트 배포
+
+데모는 **main 브랜치에 push될 때마다** [GitHub Actions](.github/workflows/deploy.yml)가 예제 앱을 빌드해 자동으로 갱신합니다.  
+처음 한 번 저장소 **Settings → Pages**에서 Source를 **GitHub Actions**로 선택해두면, 이후 main에 머지·푸시할 때마다 데모가 자동 배포됩니다.
+
+로컬에서 수동 배포하려면 (Pages 소스가 gh-pages 브랜치인 경우):
+
+```bash
+cd example && yarn deploy
+```
+
 ## 설치
 
 ```bash
