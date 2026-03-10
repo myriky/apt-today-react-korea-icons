@@ -1,6 +1,8 @@
 import * as React from "react";
 
-export const GimpoSi = (props: React.SVGProps<SVGSVGElement>) => (
+export const GimpoSi = (props: React.SVGProps<SVGSVGElement>) => {
+  const id = React.useId();
+  return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
@@ -11,7 +13,7 @@ export const GimpoSi = (props: React.SVGProps<SVGSVGElement>) => (
   >
     <defs>
       <linearGradient
-        id="gimpo-b"
+        id={`${id}-b`}
         x1="0"
         x2="1"
         y1="0"
@@ -24,7 +26,7 @@ export const GimpoSi = (props: React.SVGProps<SVGSVGElement>) => (
         <stop offset="1" stopOpacity={1} stopColor="#9f8125" />
       </linearGradient>
       <linearGradient
-        id="gimpo-d"
+        id={`${id}-d`}
         x1="0"
         x2="1"
         y1="0"
@@ -36,29 +38,29 @@ export const GimpoSi = (props: React.SVGProps<SVGSVGElement>) => (
         <stop offset="0" stopOpacity={1} stopColor="#cab272" />
         <stop offset="1" stopOpacity={1} stopColor="#9f8125" />
       </linearGradient>
-      <clipPath id="gimpo-a" clipPathUnits="userSpaceOnUse">
+      <clipPath id={`${id}-a`} clipPathUnits="userSpaceOnUse">
         <path d="m223.77 375.883-29.968 28.27v-67.85l29.968 16.963z" />
       </clipPath>
-      <clipPath id="gimpo-c" clipPathUnits="userSpaceOnUse">
+      <clipPath id={`${id}-c`} clipPathUnits="userSpaceOnUse">
         <path d="m228.858 353.266 78.028-16.963v67.85l-78.028-28.27z" />
       </clipPath>
     </defs>
     <g
-      clipPath="url(#gimpo-a)"
+      clipPath={`url(#${id}-a)`}
       transform="matrix(5.89536 0 0 -5.89536 -1142.532 2382.626)"
     >
       <path
         d="m223.77 375.883-29.968 28.27v-67.85l29.968 16.963z"
-        fill="url(#gimpo-b)"
+        fill={`url(#${id}-b)`}
       />
     </g>
     <g
-      clipPath="url(#gimpo-c)"
+      clipPath={`url(#${id}-c)`}
       transform="matrix(5.89536 0 0 -5.89536 -1142.532 2382.626)"
     >
       <path
         d="m228.858 353.266 78.028-16.963v67.85l-78.028-28.27z"
-        fill="url(#gimpo-d)"
+        fill={`url(#${id}-d)`}
       />
     </g>
     <path
@@ -90,6 +92,7 @@ export const GimpoSi = (props: React.SVGProps<SVGSVGElement>) => (
       transform="matrix(5.89536 0 0 -5.89536 573.052 233.331)"
     />
   </svg>
-);
+  );
+};
 
 export default GimpoSi;

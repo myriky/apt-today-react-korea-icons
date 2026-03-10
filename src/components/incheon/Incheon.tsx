@@ -1,6 +1,8 @@
 import * as React from "react";
 
-export const Incheon = (props: React.SVGProps<SVGSVGElement>) => (
+export const Incheon = (props: React.SVGProps<SVGSVGElement>) => {
+  const id = React.useId();
+  return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="758"
@@ -10,11 +12,11 @@ export const Incheon = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <defs>
-      <clipPath id="incheon-a">
+      <clipPath id={`${id}-a`}>
         <path d="M-1-1h760v760H-1z" />
       </clipPath>
     </defs>
-    <g fillRule="evenodd" clipPath="url(#incheon-a)" transform="translate(1 1)">
+    <g fillRule="evenodd" clipPath={`url(#${id}-a)`} transform="translate(1 1)">
       <path
         fill="#0079C1"
         d="M338.456 561.06c90.48 61.034 232.291 82.257 364.544 9.427-81.458 137.898-245.478 213.631-409.864 175.816C89.838 699.515-37.059 496.687 9.692 293.271 54.89 96.652 245.833-28.529 442.139 5.596c0 0 76.999 13.398 116.628 81.57 14.879 24.543 26.762 53.096 34.507 85.317l.163.752c9.26 43.079 9.461 88.853-1.067 134.615-16.222 70.693-56.093 136.837-107.966 172.301l-.319.292c17.991-18.654 31.272-42.259 37.528-69.367 18.285-79.461-31.302-158.693-110.723-176.948-79.427-18.273-158.616 31.342-176.868 110.768-5.283 23.028-5.962 45.861-1.63 67.258 0 0 13.914 89.684 106.064 148.906Z"
@@ -29,6 +31,7 @@ export const Incheon = (props: React.SVGProps<SVGSVGElement>) => (
       />
     </g>
   </svg>
-);
+  );
+};
 
 export default Incheon;

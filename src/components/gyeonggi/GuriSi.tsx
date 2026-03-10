@@ -1,6 +1,8 @@
 import * as React from "react";
 
-export const GuriSi = (props: React.SVGProps<SVGSVGElement>) => (
+export const GuriSi = (props: React.SVGProps<SVGSVGElement>) => {
+  const id = React.useId();
+  return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="758"
@@ -10,11 +12,11 @@ export const GuriSi = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <defs>
-      <clipPath id="guri-a">
+      <clipPath id={`${id}-a`}>
         <path d="M-1 61h760v634H-1z" />
       </clipPath>
     </defs>
-    <g fillRule="evenodd" clipPath="url(#guri-a)" transform="translate(1 -61)">
+    <g fillRule="evenodd" clipPath={`url(#${id}-a)`} transform="translate(1 -61)">
       <path
         fill="#CF162A"
         d="M0 367.84S-.29 300.922 45.555 229L220 313.43s-13.412 36.651-11.552 54.57L0 367.84ZM57 213.326 228.712 296s20.786-34.124 35.288-43.775L159.736 121c-.014 0-60.48 33.163-102.736 92.326ZM176 111.942 278.808 241s26.558-17.936 51.192-24.22L296.572 69S235.389 79.037 176 111.942ZM315 65.672l33.203 146.168s33.436-4.698 57.011.16L439 65.818c-.015.014-59.374-10.75-124-.146ZM457.142 69 423 216.273s32.513 9.22 50.871 24.727L578 112.254c.015 0-50.871-29.896-120.858-43.254ZM594.518 122 489 252.73s26.489 24.047 35.289 44.27L698 214.828c.015.015-38.271-55.086-103.482-92.828ZM532 313.656 709.163 230s43.97 59.076 45.837 139H544.571c0-.015-.962-31.578-12.571-55.344Z"
@@ -29,6 +31,7 @@ export const GuriSi = (props: React.SVGProps<SVGSVGElement>) => (
       />
     </g>
   </svg>
-);
+  );
+};
 
 export default GuriSi;

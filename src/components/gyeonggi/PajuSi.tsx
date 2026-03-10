@@ -1,6 +1,8 @@
 import * as React from "react";
 
-export const PajuSi = (props: React.SVGProps<SVGSVGElement>) => (
+export const PajuSi = (props: React.SVGProps<SVGSVGElement>) => {
+  const id = React.useId();
+  return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="759"
@@ -10,11 +12,11 @@ export const PajuSi = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <defs>
-      <clipPath id="paju-a">
+      <clipPath id={`${id}-a`}>
         <path d="M-1 164h759v427H-1z" />
       </clipPath>
     </defs>
-    <g fillRule="evenodd" clipPath="url(#paju-a)" transform="translate(1 -164)">
+    <g fillRule="evenodd" clipPath={`url(#${id}-a)`} transform="translate(1 -164)">
       <path
         fill="#004989"
         d="M480.727 378v121.238c0 18.515-8.424 29.494-25.639 29.494-16.391 0-24.723-11.209-24.723-29.494V378H386v123.489C386 535.394 410.723 554 455.637 554 519.964 554 525 513.802 525 501.489V378h-44.273ZM77.15 378H0v170h44.506v-63.963h30.16c49.84 0 57.334-33.843 57.334-53.202C132 396.255 113.012 378 77.15 378Zm-9.334 78.034H44.46v-50.03h21.103c15.035 0 22.253 8.415 22.253 25.75.046 10.806-8.552 24.28-20 24.28ZM231.084 378h-57.113L123 548h45.975s31.535-135.329 33.048-140.755c1.604 5.38 35.89 140.755 35.89 140.755H281l-49.916-170ZM306.383 378l.046 149.928c0 15.598-2.37 30.004-24.429 42.712l5.697 19.36c38.649-6.79 59.477-24.407 62.303-65.834V378h-43.617Z"
@@ -37,6 +39,7 @@ export const PajuSi = (props: React.SVGProps<SVGSVGElement>) => (
       />
     </g>
   </svg>
-);
+  );
+};
 
 export default PajuSi;

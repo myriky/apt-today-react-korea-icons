@@ -1,6 +1,8 @@
 import * as React from "react";
 
-export const UlsanNamGu = (props: React.SVGProps<SVGSVGElement>) => (
+export const UlsanNamGu = (props: React.SVGProps<SVGSVGElement>) => {
+  const id = React.useId();
+  return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="758"
@@ -10,11 +12,11 @@ export const UlsanNamGu = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <defs>
-      <clipPath id="ulsan-namgu-a">
+      <clipPath id={`${id}-a`}>
         <path d="M-1 49h760v659H-1z" />
       </clipPath>
     </defs>
-    <g fillRule="evenodd" clipPath="url(#ulsan-namgu-a)" transform="translate(1 -49)">
+    <g fillRule="evenodd" clipPath={`url(#${id}-a)`} transform="translate(1 -49)">
       <path
         fill="#F78D1D"
         d="M702 138c0 49.135-39.865 89-89 89-49.166 0-89-39.865-89-89 0-49.166 39.834-89 89-89s89 39.865 89 89Z"
@@ -29,6 +31,7 @@ export const UlsanNamGu = (props: React.SVGProps<SVGSVGElement>) => (
       />
     </g>
   </svg>
-);
+  );
+};
 
 export default UlsanNamGu;

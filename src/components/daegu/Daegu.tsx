@@ -1,6 +1,8 @@
 import * as React from "react";
 
-export const Daegu = (props: React.SVGProps<SVGSVGElement>) => (
+export const Daegu = (props: React.SVGProps<SVGSVGElement>) => {
+  const id = React.useId();
+  return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="746"
@@ -10,11 +12,11 @@ export const Daegu = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <defs>
-      <clipPath id="daegu-a">
+      <clipPath id={`${id}-a`}>
         <path d="M5 82h748v582H5z" />
       </clipPath>
     </defs>
-    <g fill="#008837" fillRule="evenodd" clipPath="url(#daegu-a)" transform="translate(-5 -82)">
+    <g fill="#008837" fillRule="evenodd" clipPath={`url(#${id}-a)`} transform="translate(-5 -82)">
       <path d="m6 534 237.608-374L277 217.422 86.756 514.6c.006-.006-68.33 13.182-80.756 19.4Z" />
       <path d="M367.657 112 114 510s43.565-3.891 51.354-3.105L391 156.308 367.657 112Z" />
       <path d="M463.734 82 197 506.14s210.749-9.339 318.834 9.339c0 0 220.081 31.125 161.762 98.833 0 0-24.883 27.236-111.99 46.688 0 0 158.65-7.778 181.2-83.251 0 0 9.326-23.348-3.893-43.586L463.734 82Z" />
@@ -25,6 +27,7 @@ export const Daegu = (props: React.SVGProps<SVGSVGElement>) => (
       <path d="M511.994 623.27c0 26.407-15.164 37.73-39.224 37.73-8.783 0-21.82-2.236-30.322-12.157-5.184-6.153-7.186-14.256-7.448-24.321V558h20.342v65.121c0 13.976 7.716 20.129 17.029 20.129 13.692 0 19.287-6.994 19.287-19.151V558H512v65.27Z" />
     </g>
   </svg>
-);
+  );
+};
 
 export default Daegu;

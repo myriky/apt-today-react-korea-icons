@@ -1,6 +1,8 @@
 import * as React from "react";
 
-export const HwaseongSi = (props: React.SVGProps<SVGSVGElement>) => (
+export const HwaseongSi = (props: React.SVGProps<SVGSVGElement>) => {
+  const id = React.useId();
+  return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="630"
@@ -10,11 +12,11 @@ export const HwaseongSi = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <defs>
-      <clipPath id="a">
+      <clipPath id={`${id}-a`}>
         <path d="M63-1h630v758H63z" />
       </clipPath>
     </defs>
-    <g fillRule="evenodd" clipPath="url(#a)" transform="translate(-63 1)">
+    <g fillRule="evenodd" clipPath={`url(#${id}-a)`} transform="translate(-63 1)">
       <path
         fill="#D4D4D4"
         d="M535.299 349.027c3.853-172.318 139.124-330.263 86.379-347.746C560.487-19.166 408.177 211.38 278.684 255.83c-65.783 22.669-118.381-21.188-139.568 5.186-21.039 25.929 23.558 68.897 10.52 154.537-13.779 90.826-103.861 190.69-83.711 216.619 20.742 26.67 86.081-60.748 181.201-60.304 124.603.593 373.218 242.252 434.409 170.984 58.82-68.601-149.643-235.436-146.236-393.825Zm19.113 333.225c-131.715-69.193-208.907-133.201-287.729-134.979-79.414-1.63-137.049 42.375-163.866 57.637-14.372 8.297-16.89-5.334-9.038-20.892 26.965-53.043 58.82-108.309 68.006-157.501 13.483-71.416-6.667-109.643-8.445-132.312-1.482-15.706 10.815-21.929 18.52-21.929 39.707.445 72.451 15.558 138.382-16.594 111.122-54.377 169.201-133.35 233.206-188.171 44.893-38.227 58.82-19.706 43.412 12.742-39.115 82.232-73.637 155.574-76.451 261.217-3.408 132.905 77.488 226.694 105.342 298.851 21.78 56.6-9.334 69.194-61.339 41.931Z"
@@ -29,6 +31,7 @@ export const HwaseongSi = (props: React.SVGProps<SVGSVGElement>) => (
       />
     </g>
   </svg>
-);
+  );
+};
 
 export default HwaseongSi;

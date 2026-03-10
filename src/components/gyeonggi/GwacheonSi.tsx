@@ -1,7 +1,9 @@
 import * as React from "react";
 
 // TODO: 실제 과천시 SVG로 교체 필요
-export const GwacheonSi = (props: React.SVGProps<SVGSVGElement>) => (
+export const GwacheonSi = (props: React.SVGProps<SVGSVGElement>) => {
+  const id = React.useId();
+  return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="738"
@@ -11,11 +13,11 @@ export const GwacheonSi = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <defs>
-      <clipPath id="a">
+      <clipPath id={`${id}-a`}>
         <path d="M9-1h738v758H9z" />
       </clipPath>
     </defs>
-    <g fillRule="evenodd" clipPath="url(#a)" transform="translate(-9 1)">
+    <g fillRule="evenodd" clipPath={`url(#${id}-a)`} transform="translate(-9 1)">
       <path
         fill="#005EB8"
         d="M429.356 284.341c17.506 48.299 25.786 101.096 20.226 155.55-5.796 56.704-24.839 108.79-53.582 153.656 58.669 106.423 179.909 156.615 186.651 160.285 5.796 3.078 10.882 2.841 12.775-.473 2.247-3.907-.828-8.642-5.323-11.246-8.635-5.09-16.442-8.05-33.948-22.374-10.763-8.878-19.753-25.925-19.516-50.074.591-54.691 48.141-67.003 47.195-128.915-.592-36.461-15.259-52.087-13.958-82.155 1.893-40.367 79.841-65.464 102.788-128.796C695.73 266.111 684.02 191.532 746 134c-141.112 7.103-251.943 66.884-316.644 150.341Z"
@@ -30,6 +32,7 @@ export const GwacheonSi = (props: React.SVGProps<SVGSVGElement>) => (
       />
     </g>
   </svg>
-);
+  );
+};
 
 export default GwacheonSi;

@@ -1,7 +1,9 @@
 import * as React from "react";
 
 // TODO: 실제 의왕시 SVG로 교체 필요
-export const UiwangSi = (props: React.SVGProps<SVGSVGElement>) => (
+export const UiwangSi = (props: React.SVGProps<SVGSVGElement>) => {
+  const id = React.useId();
+  return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="756"
@@ -11,11 +13,11 @@ export const UiwangSi = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <defs>
-      <clipPath id="a">
+      <clipPath id={`${id}-a`}>
         <path d="M-1-1h756v758H-1z" />
       </clipPath>
     </defs>
-    <g clipPath="url(#a)" transform="translate(1 1)">
+    <g clipPath={`url(#${id}-a)`} transform="translate(1 1)">
       <path
         fill="#007061"
         fillRule="evenodd"
@@ -39,6 +41,7 @@ export const UiwangSi = (props: React.SVGProps<SVGSVGElement>) => (
       />
     </g>
   </svg>
-);
+  );
+};
 
 export default UiwangSi;

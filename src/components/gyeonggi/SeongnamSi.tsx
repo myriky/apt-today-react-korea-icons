@@ -1,6 +1,8 @@
 import * as React from "react";
 
-export const SeongnamSi = (props: React.SVGProps<SVGSVGElement>) => (
+export const SeongnamSi = (props: React.SVGProps<SVGSVGElement>) => {
+  const id = React.useId();
+  return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="758"
@@ -10,13 +12,13 @@ export const SeongnamSi = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <defs>
-      <clipPath id="seongnam-a">
+      <clipPath id={`${id}-a`}>
         <path d="M-1 31h760v694H-1z" />
       </clipPath>
     </defs>
     <g
       fillRule="evenodd"
-      clipPath="url(#seongnam-a)"
+      clipPath={`url(#${id}-a)`}
       transform="translate(1 -31)"
     >
       <path
@@ -37,6 +39,7 @@ export const SeongnamSi = (props: React.SVGProps<SVGSVGElement>) => (
       />
     </g>
   </svg>
-);
+  );
+};
 
 export default SeongnamSi;

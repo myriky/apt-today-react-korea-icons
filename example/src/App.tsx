@@ -10,6 +10,7 @@ const allIcons = utils.getAll();
 function App() {
   const [search, setSearch] = useState("");
   const [activeRegion, setActiveRegion] = useState<number | null>(null);
+  const [iconSize, setIconSize] = useState(48);
   const [copiedName, setCopiedName] = useState<string | null>(null);
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window !== "undefined") {
@@ -127,25 +128,57 @@ function App() {
               />
             </div>
 
-            {/* Region Filter */}
-            <div className="flex gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-hide">
-              <FilterButton
-                active={activeRegion === null}
-                onClick={() => setActiveRegion(null)}
+            {/* Size Control */}
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                onClick={() => setIconSize((s) => Math.max(16, s - 8))}
+                className="p-1.5 rounded-lg text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="아이콘 축소"
               >
-                전체
-              </FilterButton>
-              {regionsWithIcons.map((region) => (
-                <FilterButton
-                  key={region.code}
-                  active={activeRegion === region.code}
-                  onClick={() => setActiveRegion(region.code)}
-                  region={region}
-                >
-                  {region.shortName}
-                </FilterButton>
-              ))}
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
+                </svg>
+              </button>
+              <input
+                type="range"
+                min={16}
+                max={128}
+                step={4}
+                value={iconSize}
+                onChange={(e) => setIconSize(Number(e.target.value))}
+                className="w-20 sm:w-24 accent-blue-500"
+              />
+              <button
+                onClick={() => setIconSize((s) => Math.min(128, s + 8))}
+                className="p-1.5 rounded-lg text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="아이콘 확대"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </button>
+              <span className="text-xs text-gray-400 dark:text-gray-500 w-8 text-right tabular-nums">{iconSize}</span>
             </div>
+          </div>
+
+          {/* Region Filter */}
+          <div className="flex gap-1.5 overflow-x-auto pt-2 pb-1 sm:pb-0 scrollbar-hide">
+            <FilterButton
+              active={activeRegion === null}
+              onClick={() => setActiveRegion(null)}
+            >
+              전체
+            </FilterButton>
+            {regionsWithIcons.map((region) => (
+              <FilterButton
+                key={region.code}
+                active={activeRegion === region.code}
+                onClick={() => setActiveRegion(region.code)}
+                region={region}
+              >
+                {region.shortName}
+              </FilterButton>
+            ))}
           </div>
         </div>
       </div>
@@ -159,11 +192,18 @@ function App() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+          <div className={`grid gap-3 ${
+            iconSize >= 96
+              ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+              : iconSize >= 64
+              ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6"
+              : "grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8"
+          }`}>
             {filteredIcons.map((icon) => (
               <IconCard
                 key={icon.code}
                 icon={icon}
+                iconSize={iconSize}
                 onCopy={handleCopy}
                 isCopied={copiedName === icon.componentName}
               />
@@ -284,10 +324,12 @@ function FilterButton({
 
 function IconCard({
   icon,
+  iconSize,
   onCopy,
   isCopied,
 }: {
   icon: IconInfo;
+  iconSize: number;
   onCopy: (icon: IconInfo) => void;
   isCopied: boolean;
 }) {
@@ -305,7 +347,7 @@ function IconCard({
       `}
       title={`${icon.componentName} — 클릭하여 복사`}
     >
-      <Icon className="w-10 h-10 sm:w-12 sm:h-12" />
+      <Icon style={{ width: iconSize, height: iconSize }} />
       <span className="text-xs text-gray-500 dark:text-gray-400 text-center leading-tight truncate w-full">
         {icon.name}
       </span>
