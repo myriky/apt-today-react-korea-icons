@@ -4,7 +4,6 @@ import { utils, type IconInfo, type RegionInfo } from "@apt.today/react-seoul-ic
 const PACKAGE_NAME = "@apt.today/react-seoul-icons";
 
 // 시군구가 있는 시도만 필터
-const regionsWithIcons = utils.getRegionsWithIcons();
 const allIcons = utils.getAll();
 const availableRegions = utils.getAvailableRegions();
 
@@ -98,7 +97,7 @@ function App() {
           <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             광역/기초자치단체 공식 로고를 React 컴포넌트로 제공합니다.
             <br className="hidden sm:block" />
-            클릭하면 import 구문이 복사됩니다.
+            클릭하면 import 구문이 복사됩니다. 상단 아이콘으로 지역 필터링이 가능합니다.
           </p>
 
           <div className="mt-6 flex justify-center">
@@ -124,15 +123,14 @@ function App() {
 
       {/* Region Grid */}
       <section className="max-w-6xl mx-auto px-4 pt-8 pb-4">
-        <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">
-          광역자치단체
-        </h2>
         <div className="grid gap-3 grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9">
           {availableRegions.map((region) => (
             <RegionCard
               key={region.code}
               region={region}
               iconSize={48}
+              isActive={activeRegion === region.code}
+              onFilter={() => setActiveRegion(activeRegion === region.code ? null : region.code)}
               onCopy={handleRegionCopy}
               isCopied={copiedName === region.englishName}
             />
@@ -191,25 +189,20 @@ function App() {
             </div>
           </div>
 
-          {/* Region Filter */}
-          <div className="flex gap-1.5 overflow-x-auto pt-2 pb-1 sm:pb-0 scrollbar-hide">
-            <FilterButton
-              active={activeRegion === null}
-              onClick={() => setActiveRegion(null)}
-            >
-              전체
-            </FilterButton>
-            {regionsWithIcons.map((region) => (
-              <FilterButton
-                key={region.code}
-                active={activeRegion === region.code}
-                onClick={() => setActiveRegion(region.code)}
-                region={region}
+          {/* Active filter indicator */}
+          {activeRegion !== null && (
+            <div className="flex items-center gap-2 pt-2">
+              <span className="text-xs text-gray-500 dark:text-gray-400">
+                {availableRegions.find(r => r.code === activeRegion)?.shortName} 필터 적용중
+              </span>
+              <button
+                onClick={() => setActiveRegion(null)}
+                className="text-xs text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
               >
-                {region.shortName}
-              </FilterButton>
-            ))}
-          </div>
+                전체 보기
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
@@ -244,7 +237,7 @@ function App() {
         {/* count */}
         <p className="mt-8 text-center text-sm text-gray-400 dark:text-gray-500">
           {filteredIcons.length}개 아이콘
-          {activeRegion !== null && ` (${regionsWithIcons.find(r => r.code === activeRegion)?.shortName})`}
+          {activeRegion !== null && ` (${availableRegions.find(r => r.code === activeRegion)?.shortName})`}
         </p>
       </main>
 
@@ -322,36 +315,6 @@ seoulIcons.map(icon => <icon.component key={icon.code} width={48} />)`}
 // Sub Components
 // ============================================
 
-function FilterButton({
-  active,
-  onClick,
-  region,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  region?: RegionInfo;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className={`
-        inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-colors
-        ${active
-          ? "bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900"
-          : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
-        }
-      `}
-    >
-      {region?.component && (
-        <region.component className="w-4 h-4 shrink-0" />
-      )}
-      {children}
-    </button>
-  );
-}
-
 function IconCard({
   icon,
   iconSize,
@@ -395,11 +358,15 @@ function IconCard({
 function RegionCard({
   region,
   iconSize,
+  isActive,
+  onFilter,
   onCopy,
   isCopied,
 }: {
   region: RegionInfo;
   iconSize: number;
+  isActive: boolean;
+  onFilter: () => void;
   onCopy: (region: RegionInfo) => void;
   isCopied: boolean;
 }) {
@@ -407,19 +374,32 @@ function RegionCard({
   if (!Icon) return null;
 
   return (
-    <button
-      onClick={() => onCopy(region)}
+    <div
       className={`
-        group relative flex flex-col items-center justify-center gap-2 p-4 rounded-xl border transition-all
-        ${isCopied
+        group relative flex flex-col items-center justify-center gap-2 p-4 rounded-xl border transition-all cursor-pointer
+        ${isActive
+          ? "border-blue-500 bg-blue-50 dark:bg-blue-950/30 ring-1 ring-blue-500"
+          : isCopied
           ? "border-green-500 bg-green-50 dark:bg-green-950/30"
           : "border-gray-200 dark:border-gray-800 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-md"
         }
       `}
-      title={`${region.englishName} — 클릭하여 복사`}
+      onClick={onFilter}
+      title={`${region.shortName} — 클릭하여 필터`}
     >
+      <button
+        onClick={(e) => { e.stopPropagation(); onCopy(region); }}
+        className="absolute top-1.5 right-1.5 p-1 rounded-md text-gray-300 dark:text-gray-600 opacity-0 group-hover:opacity-100 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+        title="import 복사"
+      >
+        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" />
+        </svg>
+      </button>
       <Icon style={{ width: iconSize, height: iconSize }} />
-      <span className="text-xs text-gray-500 dark:text-gray-400 text-center leading-tight truncate w-full">
+      <span className={`text-xs text-center leading-tight truncate w-full ${
+        isActive ? "text-blue-600 dark:text-blue-400 font-medium" : "text-gray-500 dark:text-gray-400"
+      }`}>
         {region.shortName}
       </span>
       {isCopied && (
@@ -429,7 +409,7 @@ function RegionCard({
           </svg>
         </div>
       )}
-    </button>
+    </div>
   );
 }
 
