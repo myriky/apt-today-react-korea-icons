@@ -1,6 +1,6 @@
-# @apt.today/react-seoul-icons - 예제
+# @apt.today/react-korea-icons - 예제
 
-이 폴더는 `@apt.today/react-seoul-icons` 패키지를 실제로 사용하는 예제입니다.
+이 폴더는 `@apt.today/react-korea-icons` 패키지를 실제로 사용하는 예제입니다.
 
 ## 실행 방법
 
@@ -38,7 +38,7 @@ yarn dev
 
 ## 패키지 링크 방식
 
-`package.json`에서 `"@apt.today/react-seoul-icons": "file:.."`로 설정하여 
+`package.json`에서 `"@apt.today/react-korea-icons": "file:.."`로 설정하여 
 상위 폴더의 패키지를 직접 링크합니다. 
 
 이는 실제 npm에 배포되었을 때와 동일한 방식으로 패키지를 사용할 수 있게 해줍니다.

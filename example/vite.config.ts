@@ -4,5 +4,5 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [tailwindcss(), react()],
-  base: "/apt-today-react-seoul-icons/",
+  base: "/apt-today-react-korea-icons/",
 });

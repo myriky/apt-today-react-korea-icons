@@ -1,16 +1,16 @@
-# @apt.today/react-seoul-icons
+# @apt.today/react-korea-icons
 
-[![npm version](https://img.shields.io/npm/v/@apt.today/react-seoul-icons.svg?style=flat-square)](https://www.npmjs.com/package/@apt.today/react-seoul-icons)
-[![npm downloads](https://img.shields.io/npm/dm/@apt.today/react-seoul-icons.svg?style=flat-square)](https://www.npmjs.com/package/@apt.today/react-seoul-icons)
-[![GitHub stars](https://img.shields.io/github/stars/myriky/apt-today-react-seoul-icons.svg?style=flat-square)](https://github.com/myriky/apt-today-react-seoul-icons)
+[![npm version](https://img.shields.io/npm/v/@apt.today/react-korea-icons.svg?style=flat-square)](https://www.npmjs.com/package/@apt.today/react-korea-icons)
+[![npm downloads](https://img.shields.io/npm/dm/@apt.today/react-korea-icons.svg?style=flat-square)](https://www.npmjs.com/package/@apt.today/react-korea-icons)
+[![GitHub stars](https://img.shields.io/github/stars/myriky/apt-today-react-korea-icons.svg?style=flat-square)](https://github.com/myriky/apt-today-react-korea-icons)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg?style=flat-square)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/License-Custom-orange.svg?style=flat-square)](./LICENSE)
 
-![Seoul Icons Preview](https://myriky.github.io/apt-today-react-seoul-icons/preview.png)
+![Seoul Icons Preview](https://myriky.github.io/apt-today-react-korea-icons/preview.png)
 
 대한민국 광역자치단체(시/도) 및 기초자치단체(시/군/구) 로고 아이콘을 React 컴포넌트로 제공하는 라이브러리입니다.
 
-[데모 페이지](https://myriky.github.io/apt-today-react-seoul-icons/)
+[데모 페이지](https://myriky.github.io/apt-today-react-korea-icons/)
 
 ### 데모 사이트 배포
 
@@ -26,11 +26,11 @@ cd example && yarn deploy
 ## 설치
 
 ```bash
-npm install @apt.today/react-seoul-icons
+npm install @apt.today/react-korea-icons
 ```
 
 ```bash
-yarn add @apt.today/react-seoul-icons
+yarn add @apt.today/react-korea-icons
 ```
 
 ## 사용법
@@ -40,7 +40,7 @@ yarn add @apt.today/react-seoul-icons
 아이콘을 직접 import해서 React 컴포넌트로 사용합니다.
 
 ```tsx
-import { GangnamGu, Seoul, MapoGu } from "@apt.today/react-seoul-icons";
+import { GangnamGu, Seoul, MapoGu } from "@apt.today/react-korea-icons";
 
 function App() {
   return (
@@ -58,7 +58,7 @@ function App() {
 코드나 이름으로 아이콘을 동적으로 가져올 때는 `utils`를 사용합니다.
 
 ```tsx
-import { utils } from "@apt.today/react-seoul-icons";
+import { utils } from "@apt.today/react-korea-icons";
 
 // 코드로 아이콘 가져오기 (시도 2자리 / 시군구 5자리 자동 판별)
 const SeoulIcon = utils.getIcon(11);      // 서울특별시
@@ -77,7 +77,7 @@ const JungGu = utils.findByName("중구", { region: "서울" });
 ### 지역별 목록 조회
 
 ```tsx
-import { utils } from "@apt.today/react-seoul-icons";
+import { utils } from "@apt.today/react-korea-icons";
 
 // 시도별 시군구 목록
 const seoulIcons = utils.getByRegion(11);      // 코드로
@@ -106,7 +106,7 @@ function DistrictList() {
 ### API 응답에서 동적으로 사용
 
 ```tsx
-import { utils } from "@apt.today/react-seoul-icons";
+import { utils } from "@apt.today/react-korea-icons";
 
 // 행정구역 코드를 받은 경우
 function DistrictIcon({ code }: { code: number }) {
@@ -152,7 +152,7 @@ function DistrictIconByName({ name }: { name: string }) {
 ### 타입
 
 ```tsx
-import type { IconComponent, IconInfo, RegionInfo } from "@apt.today/react-seoul-icons";
+import type { IconComponent, IconInfo, RegionInfo } from "@apt.today/react-korea-icons";
 
 // IconComponent
 type IconComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -224,7 +224,7 @@ v2에서는 API가 `utils` 네임스페이스로 통합되었습니다.
 
 ```tsx
 // v1과 v2 모두 동일
-import { GangnamGu, Seoul } from "@apt.today/react-seoul-icons";
+import { GangnamGu, Seoul } from "@apt.today/react-korea-icons";
 ```
 
 ## 라이선스

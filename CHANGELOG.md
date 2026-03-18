@@ -40,7 +40,7 @@
 
 ### Fixed
 
-- 저장소 이름 변경 (`apt-today-react-seoul-icons`)
+- 저장소 이름 변경 (`apt-today-react-korea-icons`)
 - README 뱃지, 데모 페이지 링크 추가
 
 ## [1.0.0] - 2025-05-01

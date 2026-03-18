@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
-import { utils, type IconInfo, type RegionInfo } from "@apt.today/react-seoul-icons";
+import { utils, type IconInfo, type RegionInfo } from "@apt.today/react-korea-icons";
 
-const PACKAGE_NAME = "@apt.today/react-seoul-icons";
+const PACKAGE_NAME = "@apt.today/react-korea-icons";
 
 // 시군구가 있는 시도만 필터
 const allIcons = utils.getAll();

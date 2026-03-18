@@ -54,12 +54,12 @@ npm publish --access public
 
 ### 6. 배포 확인
 
-- https://www.npmjs.com/package/@apt.today/react-seoul-icons 에서 패키지 확인
+- https://www.npmjs.com/package/@apt.today/react-korea-icons 에서 패키지 확인
 - 설치 테스트:
   ```bash
   npx create-react-app test-app
   cd test-app
-  npm install @apt.today/react-seoul-icons
+  npm install @apt.today/react-korea-icons
   ```
 
 ## 버전 업데이트
@@ -88,7 +88,7 @@ npm publish
 
 2. 로컬 저장소와 연결
    ```bash
-   git remote add origin https://github.com/apt-today/react-seoul-icons.git
+   git remote add origin https://github.com/apt-today/react-korea-icons.git
    git branch -M main
    git push -u origin main
    ```
@@ -97,7 +97,7 @@ npm publish
    ```json
    "repository": {
      "type": "git",
-     "url": "https://github.com/apt-today/react-seoul-icons.git"
+     "url": "https://github.com/apt-today/react-korea-icons.git"
    }
    ```
 
