@@ -15,3 +15,9 @@ export * from "./daegu";
 
 // 인천광역시 및 시군구
 export * from "./incheon";
+
+// 대전광역시 및 시군구
+export * from "./daejeon";
+
+// 광주광역시 및 시군구
+export * from "./gwangju";
