@@ -6,22 +6,11 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg?style=flat-square)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/License-Custom-orange.svg?style=flat-square)](./LICENSE)
 
-![Seoul Icons Preview](https://myriky.github.io/apt-today-react-korea-icons/preview.png)
-
-대한민국 광역자치단체(시/도) 및 기초자치단체(시/군/구) 로고 아이콘을 React 컴포넌트로 제공하는 라이브러리입니다.
+대한민국 17개 광역자치단체 + 210개 기초자치단체 공식 로고를 React 컴포넌트로 제공합니다.
 
 [데모 페이지](https://myriky.github.io/apt-today-react-korea-icons/)
 
-### 데모 사이트 배포
-
-데모는 **main 브랜치에 push될 때마다** [GitHub Actions](.github/workflows/deploy.yml)가 예제 앱을 빌드해 자동으로 갱신합니다.  
-처음 한 번 저장소 **Settings → Pages**에서 Source를 **GitHub Actions**로 선택해두면, 이후 main에 머지·푸시할 때마다 데모가 자동 배포됩니다.
-
-로컬에서 수동 배포하려면 (Pages 소스가 gh-pages 브랜치인 경우):
-
-```bash
-cd example && yarn deploy
-```
+> 이전 패키지명 `@apt.today/react-seoul-icons`에서 전국 확장에 맞춰 이름을 변경했습니다.
 
 ## 설치
 
@@ -37,17 +26,16 @@ yarn add @apt.today/react-korea-icons
 
 ### 컴포넌트 직접 사용
 
-아이콘을 직접 import해서 React 컴포넌트로 사용합니다.
-
 ```tsx
-import { GangnamGu, Seoul, MapoGu } from "@apt.today/react-korea-icons";
+import { GangnamGu, Seoul, Busan, HaeundaeGu } from "@apt.today/react-korea-icons";
 
 function App() {
   return (
     <div>
       <Seoul width={64} height={64} />
       <GangnamGu className="w-12 h-12" />
-      <MapoGu style={{ width: 48, height: 48 }} />
+      <Busan style={{ width: 48, height: 48 }} />
+      <HaeundaeGu width={48} height={48} />
     </div>
   );
 }
@@ -66,12 +54,11 @@ const GangnamIcon = utils.getIcon(11680); // 강남구
 
 // 이름으로 아이콘 검색
 const Icon = utils.findByName("강남구");
-const Icon2 = utils.findByName("강남");
-const Icon3 = utils.findByName("서울특별시 강남구");
-const Icon4 = utils.findByName("서울 강남구");
+const Icon2 = utils.findByName("해운대구");
 
-// 중복 이름(중구 등)은 region 옵션으로 구분
+// 중복 이름(중구, 동구 등)은 region 옵션으로 구분
 const JungGu = utils.findByName("중구", { region: "서울" });
+const BusanDongGu = utils.findByName("동구", { region: "부산" });
 ```
 
 ### 지역별 목록 조회
@@ -81,18 +68,18 @@ import { utils } from "@apt.today/react-korea-icons";
 
 // 시도별 시군구 목록
 const seoulIcons = utils.getByRegion(11);      // 코드로
-const gyeonggiIcons = utils.getByRegion("경기"); // 이름으로
+const busanIcons = utils.getByRegion("부산");   // 이름으로
 
-// 전체 시도 목록
+// 전체 시도 목록 (17개)
 const regions = utils.getAllRegions();
 
-// 전체 시군구 목록
+// 전체 시군구 아이콘 목록 (210개)
 const allIcons = utils.getAll();
 
 function DistrictList() {
   return (
     <div className="grid grid-cols-5 gap-4">
-      {seoulIcons.map((icon) => (
+      {busanIcons.map((icon) => (
         <div key={icon.code} className="flex flex-col items-center">
           <icon.component className="w-12 h-12" />
           <span>{icon.name}</span>
@@ -111,13 +98,6 @@ import { utils } from "@apt.today/react-korea-icons";
 // 행정구역 코드를 받은 경우
 function DistrictIcon({ code }: { code: number }) {
   const Icon = utils.getIcon(code);
-  if (!Icon) return null;
-  return <Icon width={48} height={48} />;
-}
-
-// 지역명을 받은 경우
-function DistrictIconByName({ name }: { name: string }) {
-  const Icon = utils.findByName(name);
   if (!Icon) return null;
   return <Icon width={48} height={48} />;
 }
@@ -180,51 +160,35 @@ interface RegionInfo {
 
 ## 지원 행정구역
 
-### 시도 (광역시/도)
+17개 광역자치단체 CI + 210개 기초자치단체 로고
 
-| 시도 | 코드 | 컴포넌트명 |
-| --- | --- | --- |
-| 서울특별시 | `11` | `Seoul` |
-| 부산광역시 | `26` | `Busan` |
-| 대구광역시 | `27` | `Daegu` |
-| 인천광역시 | `28` | `Incheon` |
-| 울산광역시 | `31` | `Ulsan` |
-| 경기도 | `41` | `Gyeonggi` |
+| 시도 | 코드 | 컴포넌트명 | 시군구 |
+| --- | --- | --- | --- |
+| 서울특별시 | `11` | `Seoul` | 25개 (강남구, 종로구, 마포구 등) |
+| 부산광역시 | `26` | `Busan` | 16개 (해운대구, 부산진구, 금정구 등) |
+| 대구광역시 | `27` | `Daegu` | 9개 (수성구, 달서구, 군위군 등) |
+| 인천광역시 | `28` | `Incheon` | 10개 (연수구, 부평구, 강화군 등) |
+| 광주광역시 | `29` | `Gwangju` | 5개 (동구, 서구, 남구, 북구, 광산구) |
+| 대전광역시 | `30` | `Daejeon` | 5개 (동구, 중구, 서구, 유성구, 대덕구) |
+| 울산광역시 | `31` | `Ulsan` | 5개 (남구, 중구, 동구, 북구, 울주군) |
+| 세종특별자치시 | `36` | `Sejong` | - |
+| 경기도 | `41` | `Gyeonggi` | 15개 (수원시, 고양시, 용인시 등) |
+| 강원특별자치도 | `42` | `Gangwon` | 18개 (춘천시, 원주시, 강릉시 등) |
+| 충청북도 | `43` | `Chungbuk` | 11개 (청주시, 충주시, 제천시 등) |
+| 충청남도 | `44` | `Chungnam` | 15개 (천안시, 아산시, 공주시 등) |
+| 전북특별자치도 | `45` | `Jeonbuk` | 14개 (전주시, 군산시, 익산시 등) |
+| 전라남도 | `46` | `Jeonnam` | 22개 (목포시, 여수시, 순천시 등) |
+| 경상북도 | `47` | `Gyeongbuk` | 22개 (포항시, 경주시, 안동시 등) |
+| 경상남도 | `48` | `Gyeongnam` | 18개 (창원시, 진주시, 김해시 등) |
+| 제주특별자치도 | `50` | `Jeju` | - |
 
-### 시군구
+## react-seoul-icons에서 마이그레이션
 
-- **서울특별시**: 25개 자치구 (강남구, 종로구, 마포구 등)
-- **경기도**: 14개 시 (수원시, 고양시, 용인시, 화성시, 성남시, 안양시, 광명시, 과천시, 구리시, 남양주시, 하남시, 의왕시, 김포시, 파주시)
-- **부산광역시**: 해운대구
-- **대구광역시**: 수성구
-- **인천광역시**: 연수구
-- **울산광역시**: 남구
+패키지명만 변경하면 됩니다. API는 동일합니다.
 
-## v1에서 마이그레이션
-
-v2에서는 API가 `utils` 네임스페이스로 통합되었습니다.
-
-| v1 | v2 |
-| --- | --- |
-| `getSidoIcon(11)` | `utils.getIcon(11)` |
-| `getSigunguIcon(11680)` | `utils.getIcon(11680)` |
-| `getIconByCode(11680)` | `utils.getIcon(11680)` |
-| `getIconByName("강남구")` | `utils.findByName("강남구")` |
-| `getSigunguIconByName("강남구")` | `utils.findByName("강남구")` |
-| `getAllDistrictInfo()` | `utils.getAll()` |
-| `getAllSigunguInfo()` | `utils.getAll()` |
-| `getDistrictsByRegion("서울")` | `utils.getByRegion("서울")` |
-| `getSigunguBySido(11)` | `utils.getByRegion(11)` |
-| `getAllSidoInfo()` | `utils.getAllRegions()` |
-| `type SidoInfo` | `type RegionInfo` |
-| `type SigunguInfo` | `type IconInfo` |
-| `type DistrictInfo` | `type IconInfo` |
-
-아이콘 컴포넌트의 직접 import는 변경 없이 동일합니다:
-
-```tsx
-// v1과 v2 모두 동일
-import { GangnamGu, Seoul } from "@apt.today/react-korea-icons";
+```diff
+- import { GangnamGu, utils } from "@apt.today/react-seoul-icons";
++ import { GangnamGu, utils } from "@apt.today/react-korea-icons";
 ```
 
 ## 라이선스
@@ -235,15 +199,13 @@ import { GangnamGu, Seoul } from "@apt.today/react-korea-icons";
 
 ### 라이브러리 코드
 
-본 라이브러리의 소스 코드는 MIT 라이선스를 따릅니다.
-
-자세한 내용은 [LICENSE](./LICENSE) 파일을 참고하세요.
+MIT 라이선스. 자세한 내용은 [LICENSE](./LICENSE) 파일을 참고하세요.
 
 ## About apt.today
 
 이 라이브러리는 [apt.today](https://apt.today) 프로젝트의 일부입니다.
 
-**apt.today**는 부동산 정보를 제공하는 서비스로, 전국 지자체별 고시공고문, 모집공고문, 토지거래허가내역을 비롯한 다양한 아파트 관련 정보를 확인 할 수 있는 플랫폼입니다.
+**apt.today**는 전국 지자체별 고시공고문, 모집공고문, 토지거래허가내역을 비롯한 다양한 아파트 관련 정보를 제공하는 플랫폼입니다.
 
 ## 기여
 
