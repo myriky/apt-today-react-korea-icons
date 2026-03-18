@@ -6,6 +6,7 @@ const PACKAGE_NAME = "@apt.today/react-seoul-icons";
 // 시군구가 있는 시도만 필터
 const regionsWithIcons = utils.getRegionsWithIcons();
 const allIcons = utils.getAll();
+const availableRegions = utils.getAvailableRegions();
 
 function App() {
   const [search, setSearch] = useState("");
@@ -41,6 +42,17 @@ function App() {
     try {
       await navigator.clipboard.writeText(importStatement);
       setCopiedName(icon.componentName);
+      setTimeout(() => setCopiedName(null), 2000);
+    } catch {
+      // fallback
+    }
+  }, []);
+
+  const handleRegionCopy = useCallback(async (region: RegionInfo) => {
+    const importStatement = `import { ${region.englishName} } from '${PACKAGE_NAME}'`;
+    try {
+      await navigator.clipboard.writeText(importStatement);
+      setCopiedName(region.englishName);
       setTimeout(() => setCopiedName(null), 2000);
     } catch {
       // fallback
@@ -109,6 +121,24 @@ function App() {
           </p>
         </div>
       </header>
+
+      {/* Region Grid */}
+      <section className="max-w-6xl mx-auto px-4 pt-8 pb-4">
+        <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">
+          광역자치단체
+        </h2>
+        <div className="grid gap-3 grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9">
+          {availableRegions.map((region) => (
+            <RegionCard
+              key={region.code}
+              region={region}
+              iconSize={48}
+              onCopy={handleRegionCopy}
+              isCopied={copiedName === region.englishName}
+            />
+          ))}
+        </div>
+      </section>
 
       {/* Search & Filter */}
       <div className="sticky top-0 z-10 bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800">
@@ -350,6 +380,47 @@ function IconCard({
       <Icon style={{ width: iconSize, height: iconSize }} />
       <span className="text-xs text-gray-500 dark:text-gray-400 text-center leading-tight truncate w-full">
         {icon.name}
+      </span>
+      {isCopied && (
+        <div className="absolute inset-0 flex items-center justify-center bg-green-50/90 dark:bg-green-950/80 rounded-xl">
+          <svg className="w-6 h-6 text-green-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+          </svg>
+        </div>
+      )}
+    </button>
+  );
+}
+
+function RegionCard({
+  region,
+  iconSize,
+  onCopy,
+  isCopied,
+}: {
+  region: RegionInfo;
+  iconSize: number;
+  onCopy: (region: RegionInfo) => void;
+  isCopied: boolean;
+}) {
+  const Icon = region.component;
+  if (!Icon) return null;
+
+  return (
+    <button
+      onClick={() => onCopy(region)}
+      className={`
+        group relative flex flex-col items-center justify-center gap-2 p-4 rounded-xl border transition-all
+        ${isCopied
+          ? "border-green-500 bg-green-50 dark:bg-green-950/30"
+          : "border-gray-200 dark:border-gray-800 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-md"
+        }
+      `}
+      title={`${region.englishName} — 클릭하여 복사`}
+    >
+      <Icon style={{ width: iconSize, height: iconSize }} />
+      <span className="text-xs text-gray-500 dark:text-gray-400 text-center leading-tight truncate w-full">
+        {region.shortName}
       </span>
       {isCopied && (
         <div className="absolute inset-0 flex items-center justify-center bg-green-50/90 dark:bg-green-950/80 rounded-xl">
