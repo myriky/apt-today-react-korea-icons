@@ -42,3 +42,9 @@ export * from "./gangwon";
 
 // 전북특별자치도 및 시군구
 export * from "./jeonbuk";
+
+// 제주특별자치도
+export * from "./jeju";
+
+// 세종특별자치시
+export * from "./sejong";

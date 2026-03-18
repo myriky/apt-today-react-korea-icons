@@ -240,7 +240,10 @@ import {
   HamyangGun,
   GeochangGun,
   HapcheonGun,
-} from "./components";
+  // 제주
+  Jeju,
+  // 세종
+  Sejong,} from "./components";
 
 import type { IconComponent, IconInfo, RegionInfo } from "./types";
 
@@ -303,7 +306,7 @@ const regionData: RegionInfo[] = [
     name: "세종특별자치시",
     shortName: "세종",
     englishName: "Sejong",
-    component: null,
+    component: Sejong,
   },
   {
     code: 41,
@@ -366,7 +369,7 @@ const regionData: RegionInfo[] = [
     name: "제주특별자치도",
     shortName: "제주",
     englishName: "Jeju",
-    component: null,
+    component: Jeju,
   },
 ];
 
