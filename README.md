@@ -6,7 +6,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg?style=flat-square)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/License-Custom-orange.svg?style=flat-square)](./LICENSE)
 
-대한민국 17개 광역자치단체 + 210개 기초자치단체 공식 로고를 React 컴포넌트로 제공합니다.
+대한민국 17개 광역자치단체 + 226개 기초자치단체 공식 로고를 React 컴포넌트로 제공합니다.
 
 ![Screenshot of a react-korea-icons](https://private-user-images.githubusercontent.com/581861/565518382-67ceccb4-133d-4a1b-ae54-27f1e589461f.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzM4MzM3MTgsIm5iZiI6MTc3MzgzMzQxOCwicGF0aCI6Ii81ODE4NjEvNTY1NTE4MzgyLTY3Y2VjY2I0LTEzM2QtNGExYi1hZTU0LTI3ZjFlNTg5NDYxZi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwMzE4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDMxOFQxMTMwMThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT04MjRkNWY2OGQzYmVmMGQwODAwM2JlNzlkMDgzYzM1YTVkMWFjODY1MTY3YTYxY2JiNmU3M2NjNDFiMWM1NmZmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9._N6u9C0s728m7q6_4u83WVdHAbDT6ynQaVX1oVjwyYk)
 
@@ -162,27 +162,377 @@ interface RegionInfo {
 
 ## 지원 행정구역
 
-17개 광역자치단체 CI + 210개 기초자치단체 로고
+17개 광역자치단체 CI + 226개 기초자치단체 로고
+
+> 행정구역 코드는 [법정동코드](https://www.code.go.kr) 기준입니다.
 
 | 시도 | 코드 | 컴포넌트명 | 시군구 |
 | --- | --- | --- | --- |
-| 서울특별시 | `11` | `Seoul` | 25개 (강남구, 종로구, 마포구 등) |
-| 부산광역시 | `26` | `Busan` | 16개 (해운대구, 부산진구, 금정구 등) |
-| 대구광역시 | `27` | `Daegu` | 9개 (수성구, 달서구, 군위군 등) |
-| 인천광역시 | `28` | `Incheon` | 10개 (연수구, 부평구, 강화군 등) |
-| 광주광역시 | `29` | `Gwangju` | 5개 (동구, 서구, 남구, 북구, 광산구) |
-| 대전광역시 | `30` | `Daejeon` | 5개 (동구, 중구, 서구, 유성구, 대덕구) |
-| 울산광역시 | `31` | `Ulsan` | 5개 (남구, 중구, 동구, 북구, 울주군) |
+| 서울특별시 | `11` | `Seoul` | 25개 |
+| 부산광역시 | `26` | `Busan` | 16개 |
+| 대구광역시 | `27` | `Daegu` | 9개 |
+| 인천광역시 | `28` | `Incheon` | 10개 |
+| 광주광역시 | `29` | `Gwangju` | 5개 |
+| 대전광역시 | `30` | `Daejeon` | 5개 |
+| 울산광역시 | `31` | `Ulsan` | 5개 |
 | 세종특별자치시 | `36` | `Sejong` | - |
-| 경기도 | `41` | `Gyeonggi` | 15개 (수원시, 고양시, 용인시 등) |
-| 강원특별자치도 | `42` | `Gangwon` | 18개 (춘천시, 원주시, 강릉시 등) |
-| 충청북도 | `43` | `Chungbuk` | 11개 (청주시, 충주시, 제천시 등) |
-| 충청남도 | `44` | `Chungnam` | 15개 (천안시, 아산시, 공주시 등) |
-| 전북특별자치도 | `45` | `Jeonbuk` | 14개 (전주시, 군산시, 익산시 등) |
-| 전라남도 | `46` | `Jeonnam` | 22개 (목포시, 여수시, 순천시 등) |
-| 경상북도 | `47` | `Gyeongbuk` | 22개 (포항시, 경주시, 안동시 등) |
-| 경상남도 | `48` | `Gyeongnam` | 18개 (창원시, 진주시, 김해시 등) |
+| 경기도 | `41` | `Gyeonggi` | 31개 |
+| 강원특별자치도 | `51` | `Gangwon` | 18개 |
+| 충청북도 | `43` | `Chungbuk` | 11개 |
+| 충청남도 | `44` | `Chungnam` | 15개 |
+| 전북특별자치도 | `52` | `Jeonbuk` | 14개 |
+| 전라남도 | `46` | `Jeonnam` | 22개 |
+| 경상북도 | `47` | `Gyeongbuk` | 22개 |
+| 경상남도 | `48` | `Gyeongnam` | 18개 |
 | 제주특별자치도 | `50` | `Jeju` | - |
+
+### 시군구 상세 코드
+
+<details>
+<summary><strong>서울특별시</strong> (코드: 11) — 25개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `11110` | 종로구 | `JongnoGu` |
+| `11140` | 중구 | `JungGu` |
+| `11170` | 용산구 | `YongsanGu` |
+| `11200` | 성동구 | `SeongdongGu` |
+| `11215` | 광진구 | `GwangjinGu` |
+| `11230` | 동대문구 | `DongdaemunGu` |
+| `11260` | 중랑구 | `JungnangGu` |
+| `11290` | 성북구 | `SeongbukGu` |
+| `11305` | 강북구 | `GangbukGu` |
+| `11320` | 도봉구 | `DobongGu` |
+| `11350` | 노원구 | `NowonGu` |
+| `11380` | 은평구 | `EunpyeongGu` |
+| `11410` | 서대문구 | `SeodaemunGu` |
+| `11440` | 마포구 | `MapoGu` |
+| `11470` | 양천구 | `YangcheonGu` |
+| `11500` | 강서구 | `GangseoGu` |
+| `11530` | 구로구 | `GuroGu` |
+| `11545` | 금천구 | `GeumcheonGu` |
+| `11560` | 영등포구 | `YeongdeungpoGu` |
+| `11590` | 동작구 | `DongjakGu` |
+| `11620` | 관악구 | `GwanakGu` |
+| `11650` | 서초구 | `SeochoGu` |
+| `11680` | 강남구 | `GangnamGu` |
+| `11710` | 송파구 | `SongpaGu` |
+| `11740` | 강동구 | `GangdongGu` |
+
+</details>
+
+<details>
+<summary><strong>부산광역시</strong> (코드: 26) — 16개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `26110` | 중구 | `BusanJungGu` |
+| `26140` | 서구 | `BusanSeoGu` |
+| `26170` | 동구 | `BusanDongGu` |
+| `26200` | 영도구 | `YeongdoGu` |
+| `26230` | 부산진구 | `BusanjinGu` |
+| `26260` | 동래구 | `DongnaeGu` |
+| `26290` | 남구 | `BusanNamGu` |
+| `26320` | 북구 | `BusanBukGu` |
+| `26350` | 해운대구 | `HaeundaeGu` |
+| `26380` | 사하구 | `SahaGu` |
+| `26410` | 금정구 | `GeumjeongGu` |
+| `26440` | 강서구 | `BusanGangseoGu` |
+| `26470` | 연제구 | `YeonjeGu` |
+| `26500` | 수영구 | `SuyeongGu` |
+| `26530` | 사상구 | `SasangGu` |
+| `26710` | 기장군 | `GijangGun` |
+
+</details>
+
+<details>
+<summary><strong>대구광역시</strong> (코드: 27) — 9개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `27110` | 중구 | `DaeguJungGu` |
+| `27140` | 동구 | `DaeguDongGu` |
+| `27170` | 서구 | `DaeguSeoGu` |
+| `27200` | 남구 | `DaeguNamGu` |
+| `27230` | 북구 | `DaeguBukGu` |
+| `27260` | 수성구 | `SuseongGu` |
+| `27290` | 달서구 | `DalseoGu` |
+| `27710` | 달성군 | `DalseongGun` |
+| `27720` | 군위군 | `GunwiGun` |
+
+</details>
+
+<details>
+<summary><strong>인천광역시</strong> (코드: 28) — 10개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `28110` | 중구 | `IncheonJungGu` |
+| `28140` | 동구 | `IncheonDongGu` |
+| `28177` | 미추홀구 | `MichuholGu` |
+| `28185` | 연수구 | `YeonsuGu` |
+| `28200` | 남동구 | `NamdongGu` |
+| `28237` | 부평구 | `BupyeongGu` |
+| `28245` | 계양구 | `GeyangGu` |
+| `28260` | 서구 | `IncheonSeoGu` |
+| `28710` | 강화군 | `GanghwaGun` |
+| `28720` | 옹진군 | `OngjinGun` |
+
+</details>
+
+<details>
+<summary><strong>광주광역시</strong> (코드: 29) — 5개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `29110` | 동구 | `GwangjuDongGu` |
+| `29140` | 서구 | `GwangjuSeoGu` |
+| `29155` | 남구 | `GwangjuNamGu` |
+| `29170` | 북구 | `GwangjuBukGu` |
+| `29200` | 광산구 | `GwangsanGu` |
+
+</details>
+
+<details>
+<summary><strong>대전광역시</strong> (코드: 30) — 5개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `30110` | 동구 | `DaejeonDongGu` |
+| `30140` | 중구 | `DaejeonJungGu` |
+| `30170` | 서구 | `DaejeonSeoGu` |
+| `30200` | 유성구 | `YuseongGu` |
+| `30230` | 대덕구 | `DaedeokGu` |
+
+</details>
+
+<details>
+<summary><strong>울산광역시</strong> (코드: 31) — 5개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `31110` | 중구 | `UlsanJungGu` |
+| `31140` | 남구 | `UlsanNamGu` |
+| `31170` | 동구 | `UlsanDongGu` |
+| `31200` | 북구 | `UlsanBukGu` |
+| `31710` | 울주군 | `UlsanUljuGun` |
+
+</details>
+
+<details>
+<summary><strong>경기도</strong> (코드: 41) — 31개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `41110` | 수원시 | `SuwonSi` |
+| `41130` | 성남시 | `SeongnamSi` |
+| `41150` | 의정부시 | `UijeongbuSi` |
+| `41170` | 안양시 | `AnyangSi` |
+| `41190` | 부천시 | `BucheonSi` |
+| `41210` | 광명시 | `GwangmyeongSi` |
+| `41220` | 평택시 | `PyeongtaekSi` |
+| `41250` | 동두천시 | `DongducheonSi` |
+| `41270` | 안산시 | `AnsanSi` |
+| `41280` | 고양시 | `GoyangSi` |
+| `41290` | 과천시 | `GwacheonSi` |
+| `41310` | 구리시 | `GuriSi` |
+| `41360` | 남양주시 | `NamyangjuSi` |
+| `41370` | 오산시 | `OsanSi` |
+| `41390` | 시흥시 | `SiheungSi` |
+| `41410` | 군포시 | `GunpoSi` |
+| `41430` | 의왕시 | `UiwangSi` |
+| `41450` | 하남시 | `HanamSi` |
+| `41460` | 용인시 | `YonginSi` |
+| `41480` | 파주시 | `PajuSi` |
+| `41500` | 이천시 | `IcheonSi` |
+| `41550` | 안성시 | `AnseongSi` |
+| `41570` | 김포시 | `GimpoSi` |
+| `41590` | 화성시 | `HwaseongSi` |
+| `41610` | 광주시 | `GyeonggiGwangjuSi` |
+| `41630` | 양주시 | `YangjuSi` |
+| `41650` | 포천시 | `PocheonSi` |
+| `41670` | 여주시 | `YeojuSi` |
+| `41800` | 연천군 | `YeoncheonGun` |
+| `41820` | 가평군 | `GapyeongGun` |
+| `41830` | 양평군 | `YangpyeongGun` |
+
+</details>
+
+<details>
+<summary><strong>강원특별자치도</strong> (코드: 51) — 18개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `51110` | 춘천시 | `ChuncheonSi` |
+| `51130` | 원주시 | `WonjuSi` |
+| `51150` | 강릉시 | `GangneungSi` |
+| `51170` | 동해시 | `DonghaeSi` |
+| `51190` | 태백시 | `TaebaekSi` |
+| `51210` | 속초시 | `SokcheoSi` |
+| `51230` | 삼척시 | `SamcheokSi` |
+| `51720` | 홍천군 | `HongcheonGun` |
+| `51730` | 횡성군 | `HoengseongGun` |
+| `51750` | 영월군 | `YeongwolGun` |
+| `51760` | 평창군 | `PyeongchangGun` |
+| `51770` | 정선군 | `JeongseonGun` |
+| `51780` | 철원군 | `CheorwonGun` |
+| `51790` | 화천군 | `HwacheonGun` |
+| `51800` | 양구군 | `YanguGun` |
+| `51810` | 인제군 | `InjeGun` |
+| `51820` | 고성군 | `GangwonGoseongGun` |
+| `51830` | 양양군 | `YangyangGun` |
+
+</details>
+
+<details>
+<summary><strong>충청북도</strong> (코드: 43) — 11개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `43110` | 청주시 | `CheongjuSi` |
+| `43130` | 충주시 | `ChungjuSi` |
+| `43150` | 제천시 | `JecheonSi` |
+| `43720` | 보은군 | `BoeunGun` |
+| `43730` | 옥천군 | `OkcheonGun` |
+| `43740` | 영동군 | `YeongdongGun` |
+| `43745` | 증평군 | `JeungpyeongGun` |
+| `43750` | 진천군 | `JincheonGun` |
+| `43760` | 괴산군 | `GoesanGun` |
+| `43770` | 음성군 | `EumseongGun` |
+| `43800` | 단양군 | `DanyangGun` |
+
+</details>
+
+<details>
+<summary><strong>충청남도</strong> (코드: 44) — 15개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `44130` | 천안시 | `CheonanSi` |
+| `44150` | 공주시 | `GongjuSi` |
+| `44180` | 보령시 | `BoryeongSi` |
+| `44200` | 아산시 | `AsanSi` |
+| `44210` | 서산시 | `SeosanSi` |
+| `44230` | 논산시 | `NonsanSi` |
+| `44250` | 계룡시 | `GyeryongSi` |
+| `44270` | 당진시 | `DangjinSi` |
+| `44710` | 금산군 | `GeumsanGun` |
+| `44760` | 부여군 | `BuyeoGun` |
+| `44770` | 서천군 | `SeocheonGun` |
+| `44790` | 청양군 | `CheongyangGun` |
+| `44800` | 홍성군 | `HongseongGun` |
+| `44810` | 예산군 | `YesanGun` |
+| `44825` | 태안군 | `TaeanGun` |
+
+</details>
+
+<details>
+<summary><strong>전북특별자치도</strong> (코드: 52) — 14개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `52110` | 전주시 | `JeonjuSi` |
+| `52130` | 군산시 | `GunsanSi` |
+| `52140` | 익산시 | `IksanSi` |
+| `52180` | 정읍시 | `JeongeupSi` |
+| `52190` | 남원시 | `NamwonSi` |
+| `52210` | 김제시 | `GimjeSi` |
+| `52710` | 완주군 | `WanjuGun` |
+| `52720` | 진안군 | `JinanGun` |
+| `52730` | 무주군 | `MujuGun` |
+| `52740` | 장수군 | `JangsuGun` |
+| `52750` | 임실군 | `ImsilGun` |
+| `52770` | 순창군 | `SunchangGun` |
+| `52790` | 고창군 | `GochangGun` |
+| `52800` | 부안군 | `BuanGun` |
+
+</details>
+
+<details>
+<summary><strong>전라남도</strong> (코드: 46) — 22개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `46110` | 목포시 | `MokpoSi` |
+| `46130` | 여수시 | `YeosuSi` |
+| `46150` | 순천시 | `SuncheonSi` |
+| `46170` | 나주시 | `NajuSi` |
+| `46230` | 광양시 | `GwangyangSi` |
+| `46710` | 담양군 | `DamyangGun` |
+| `46720` | 곡성군 | `GokseongGun` |
+| `46730` | 구례군 | `GuryeGun` |
+| `46770` | 고흥군 | `GoheungGun` |
+| `46780` | 보성군 | `BoseongGun` |
+| `46790` | 화순군 | `HwasunGun` |
+| `46800` | 장흥군 | `JangheungGun` |
+| `46810` | 강진군 | `GangjinGun` |
+| `46820` | 해남군 | `HaenamGun` |
+| `46830` | 영암군 | `YeongamGun` |
+| `46840` | 무안군 | `MuanGun` |
+| `46860` | 함평군 | `HampyeongGun` |
+| `46870` | 영광군 | `YeonggwangGun` |
+| `46880` | 장성군 | `JangseongGun` |
+| `46890` | 완도군 | `WandoGun` |
+| `46900` | 진도군 | `JindoGun` |
+| `46910` | 신안군 | `SinanGun` |
+
+</details>
+
+<details>
+<summary><strong>경상북도</strong> (코드: 47) — 22개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `47110` | 포항시 | `PohangSi` |
+| `47130` | 경주시 | `GyeongjuSi` |
+| `47150` | 김천시 | `GimcheonSi` |
+| `47170` | 안동시 | `AndongSi` |
+| `47190` | 구미시 | `GumiSi` |
+| `47210` | 영주시 | `YeongjuSi` |
+| `47230` | 영천시 | `YeongcheonSi` |
+| `47250` | 상주시 | `SangjuSi` |
+| `47280` | 문경시 | `MungyeongSi` |
+| `47290` | 경산시 | `GyeongsanSi` |
+| `47730` | 의성군 | `UiseongGun` |
+| `47750` | 청송군 | `CheongsongGun` |
+| `47760` | 영양군 | `YeongyangGun` |
+| `47770` | 영덕군 | `YeongdeokGun` |
+| `47820` | 청도군 | `CheongdoGun` |
+| `47830` | 고령군 | `GoryeongGun` |
+| `47840` | 성주군 | `SeongjuGun` |
+| `47850` | 칠곡군 | `ChilgokGun` |
+| `47900` | 예천군 | `YecheonGun` |
+| `47920` | 봉화군 | `BonghwaGun` |
+| `47930` | 울진군 | `UljinGun` |
+| `47940` | 울릉군 | `UlleungGun` |
+
+</details>
+
+<details>
+<summary><strong>경상남도</strong> (코드: 48) — 18개</summary>
+
+| 코드 | 이름 | 컴포넌트명 |
+| --- | --- | --- |
+| `48120` | 창원시 | `ChangwonSi` |
+| `48170` | 진주시 | `JinjuSi` |
+| `48220` | 통영시 | `TongyeongSi` |
+| `48240` | 사천시 | `SacheonSi` |
+| `48250` | 김해시 | `GimhaeSi` |
+| `48270` | 밀양시 | `MiryangSi` |
+| `48310` | 거제시 | `GeojeSi` |
+| `48330` | 양산시 | `YangsanSi` |
+| `48720` | 의령군 | `UiryeongGun` |
+| `48730` | 함안군 | `HamanGun` |
+| `48740` | 창녕군 | `ChangnyeongGun` |
+| `48820` | 고성군 | `GyeongnamGoseongGun` |
+| `48840` | 남해군 | `NamhaeGun` |
+| `48850` | 하동군 | `HadongGun` |
+| `48860` | 산청군 | `SancheongGun` |
+| `48870` | 함양군 | `HamyangGun` |
+| `48880` | 거창군 | `GeochangGun` |
+| `48890` | 합천군 | `HapcheonGun` |
+
+</details>
 
 ## react-seoul-icons에서 마이그레이션
 
