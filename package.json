@@ -1,6 +1,6 @@
 {
   "name": "@apt.today/react-korea-icons",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "대한민국 광역자치단체(시/도) 및 기초자치단체(시/군/구) 로고 아이콘 React 컴포넌트 라이브러리",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

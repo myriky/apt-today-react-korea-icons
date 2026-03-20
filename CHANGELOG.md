@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.0.2] - 2026-03-20
+
+### Fixed
+
+- 경상북도(Gyeongbuk) CI 아이콘 가운데 정렬 수정 — SVG `transform` 이중 보정으로 아이콘이 위로 치우치는 버그
+
+### Changed
+
+- example 의존성을 `file:..` → `link:..`로 변경 (symlink 방식으로 빌드 즉시 반영)
+
 ## [1.0.1] - 2026-03-19
 
 ### Added

@@ -6,7 +6,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg?style=flat-square)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/License-Custom-orange.svg?style=flat-square)](./LICENSE)
 
-대한민국 17개 광역자치단체 + 226개 기초자치단체 공식 로고를 React 컴포넌트로 제공합니다.
+대한민국 17개 광역자치단체 CI + 226개 기초자치단체 공식 로고를 React 컴포넌트로 제공합니다.
 
 ![react-korea-icons preview](./assets/preview.png)
 
