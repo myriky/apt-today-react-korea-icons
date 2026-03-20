@@ -10,7 +10,7 @@
     "deploy": "yarn build && gh-pages -d dist"
   },
   "dependencies": {
-    "@apt.today/react-korea-icons": "file:..",
+    "@apt.today/react-korea-icons": "link:..",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

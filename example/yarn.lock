@@ -2,8 +2,9 @@
 # yarn lockfile v1
 
 
-"@apt.today/react-korea-icons@file:..":
-  version "1.0.0"
+"@apt.today/react-korea-icons@link:..":
+  version "0.0.0"
+  uid ""
 
 "@babel/code-frame@^7.27.1":
   version "7.27.1"
