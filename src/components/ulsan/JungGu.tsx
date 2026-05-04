@@ -1,7 +1,6 @@
 import * as React from "react";
 
 export const UlsanJungGu = (props: React.SVGProps<SVGSVGElement>) => {
-  const id = React.useId();
   return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -12,11 +11,11 @@ export const UlsanJungGu = (props: React.SVGProps<SVGSVGElement>) => {
     {...props}
   >
     <defs>
-      <clipPath id={`${id}-a`}>
+      <clipPath id={`kicon-junggu-a`}>
         <path d="M-1 83h758v590H-1z" />
       </clipPath>
     </defs>
-    <g fillRule="evenodd" clipPath={`url(#${id}-a)`} transform="translate(1 -83)">
+    <g fillRule="evenodd" clipPath={`url(#kicon-junggu-a)`} transform="translate(1 -83)">
       <path
         fill="#ED1C24"
         d="M461 166c0 45.287-36.937 82-82.5 82S296 211.287 296 166s36.937-82 82.5-82 82.5 36.713 82.5 82Z"

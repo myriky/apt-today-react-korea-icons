@@ -1,7 +1,6 @@
 import * as React from "react";
 
 export const GeyangGu = (props: React.SVGProps<SVGSVGElement>) => {
-  const id = React.useId();
   return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +10,7 @@ export const GeyangGu = (props: React.SVGProps<SVGSVGElement>) => {
   >
     <defs>
       <linearGradient
-        id={`${id}-b`}
+        id={`kicon-geyanggu-b`}
         x1={378}
         x2={378}
         y1={505}
@@ -23,11 +22,11 @@ export const GeyangGu = (props: React.SVGProps<SVGSVGElement>) => {
         <stop offset={0.09} stopColor="#292C8D" />
         <stop offset={1} stopColor="#71CAEF" />
       </linearGradient>
-      <clipPath id={`${id}-a`}>
+      <clipPath id={`kicon-geyanggu-a`}>
         <path d="M-1 28h758v700H-1z" />
       </clipPath>
     </defs>
-    <g fillRule="evenodd" clipPath={`url(#${id}-a)`} transform="translate(1 -28)">
+    <g fillRule="evenodd" clipPath={`url(#kicon-geyanggu-a)`} transform="translate(1 -28)">
       <path
         fill="#DCDDDD"
         d="M564 594.526C564 620.223 480.739 641 378.026 641S192 620.171 192 594.526C192 568.83 275.261 548 378.026 548 480.739 548 564 568.83 564 594.526Z"
@@ -53,7 +52,7 @@ export const GeyangGu = (props: React.SVGProps<SVGSVGElement>) => {
         d="M676.376 464.974c-33.001 35.677-87.708 15.2-121.285 16.663C495.154 484.249 465.813 519.927 428 566c30.857-55.737 69.246-121.556 159.517-171.912 24.006-13.373 74.686-28.94 103.974-28.052 6.799 32.805 4.707 77.52-15.115 98.938ZM600.925 228.328c-126.7 51.165-165.608 187.745-163.665 177.081.683-6.934 2.521-56.838-1.26-117.143 28.301-81.79 56.445-149.03 141.507-154.178 38.855-2.363 73.09 43.181 80.493 79.112.053-.053-40.746 8.51-57.075 15.128Z"
       />
       <path
-        fill={`url(#${id}-b)`}
+        fill={`url(#kicon-geyanggu-b)`}
         d="M547.644 511.219c-7.921 4.181-18.412 10.347-26.071 16.984 29.428 4.286 55.918 9.825 78.475 16.41 50.043 14.581 80.625 34.073 80.625 55.552 0 45.153-135.652 81.787-302.988 81.787-167.335 0-303.04-36.634-303.04-81.787 0-35.693 84.77-66.056 202.954-77.24 1.731-.157 3.514-.261 5.193-.418-7.029-7.63-16.891-13.483-25.284-17.507C107.85 520.208 0 562.799 0 613.021 0 675.942 169.224 727 378 727s378-51.006 378-113.979c0-44.525-84.822-83.093-208.356-101.802Z"
       />
     </g>

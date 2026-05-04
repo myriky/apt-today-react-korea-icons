@@ -160,6 +160,16 @@ interface RegionInfo {
 }
 ```
 
+## SSR / 다중 인스턴스 안전성
+
+이 패키지의 모든 컴포넌트는 SSR 환경에서 안전하게 동작합니다.
+
+- `renderToStaticMarkup`을 컴포넌트당 별도로 여러 번 호출해도 ID 충돌 없음
+- Next.js App Router의 서버 컴포넌트와 client component hydration에서 mismatch warning 없음
+- 지도 마커처럼 같은 컴포넌트를 한 화면에 N개 띄워도 그라디언트가 정상 렌더
+
+> 내부 구현: 변환 가능한 컴포넌트는 `<defs>`/`<clipPath>` 정의를 path 좌표에 인라인화하고, 그라디언트 정의가 필요한 컴포넌트는 컴포넌트명 기반 hardcoded prefix(예: `kicon-yonginsi-b`)를 사용합니다. 같은 컴포넌트의 여러 인스턴스는 같은 ID를 공유하지만 정의가 동일하므로 시각적으로 무해하고, `React.useId()`가 만드는 hydration 의존성을 제거해 SSR/CSR 어느 환경에서나 결정적입니다.
+
 ## 지원 행정구역
 
 17개 광역자치단체 CI + 226개 기초자치단체 로고

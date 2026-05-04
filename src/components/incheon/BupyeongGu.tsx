@@ -1,7 +1,6 @@
 import * as React from "react";
 
 export const BupyeongGu = (props: React.SVGProps<SVGSVGElement>) => {
-  const id = React.useId();
   return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +9,11 @@ export const BupyeongGu = (props: React.SVGProps<SVGSVGElement>) => {
     {...props}
   >
     <defs>
-      <clipPath id={`${id}-a`}>
+      <clipPath id={`kicon-bupyeonggu-a`}>
         <path d="M10-1h736v758H10z" />
       </clipPath>
     </defs>
-    <g fillRule="evenodd" clipPath={`url(#${id}-a)`} transform="translate(-10 1)">
+    <g fillRule="evenodd" clipPath={`url(#kicon-bupyeonggu-a)`} transform="translate(-10 1)">
       <path
         fill="#374EA2"
         d="M328.512 201.242c6.018-8.846 4.244-13.104 4.244-13.104l-.128-.859C308.572 181.906 282.925 179 256.29 179c-44.471 0-86.197 8.096-122.29 22.242 13.263 53.127 61.044 97.94 126.571 122.758 4.445-19.738 11.817-34.23 14.799-39.238 7.793-13.085 47.123-74.675 53.142-83.52ZM741.64 397.531c-15.213 48.372-67.921 46.25-67.921 46.25C573.436 449.636 504 336.096 504 336.096 572.998 310.355 624.098 264.141 640.791 209c55.757 27.333 94.566 70.217 103.259 119.559 0 0 .895 2.195-8.254 5.195-6.374 1.592-50.407 17.015-50.407 17.015s-3.634 1.116-3.634 3.311c0 .823.584 1.702 2.575 2.525 6.374 2.653 53.602 19.137 53.602 19.137s7.068 2.067 7.068 6.915c0 6.019-3.36 14.874-3.36 14.874Z"

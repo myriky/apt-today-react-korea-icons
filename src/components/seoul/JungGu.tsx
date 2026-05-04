@@ -1,6 +1,5 @@
 import * as React from "react";
 export const JungGu = (props: React.SVGProps<SVGSVGElement>) => {
-  const id = React.useId();
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -9,7 +8,7 @@ export const JungGu = (props: React.SVGProps<SVGSVGElement>) => {
     >
       <defs>
         <linearGradient
-          id={`${id}-a`}
+          id={`kicon-junggu-a`}
           x1={180.48}
           x2={539.88}
           y1={380.94}
@@ -20,7 +19,7 @@ export const JungGu = (props: React.SVGProps<SVGSVGElement>) => {
           <stop offset={1} stopColor="#ffd500" />
         </linearGradient>
         <linearGradient
-          id={`${id}-b`}
+          id={`kicon-junggu-b`}
           x1={434.11}
           x2={434.11}
           y1={1001.82}
@@ -34,14 +33,14 @@ export const JungGu = (props: React.SVGProps<SVGSVGElement>) => {
       <path
         d="M326 893.72c139.92 0 253.42-113.12 254.11-252.85a146.89 146.89 0 1 1 0-1.87V308c-132.76-58.42-293.4-33.29-402.11 75.47A361.14 361.14 0 0 0 71.89 646.19C75.41 783.47 187.84 893.72 326 893.72Z"
         style={{
-          fill: `url(#${id}-a)`,
+          fill: `url(#kicon-junggu-a)`,
         }}
         transform="translate(-71.83 -93.94)"
       />
       <path
         d="M615.31 186.05c-19.49 10-35.22 33.82-35.22 53.36v400.2c0 140.29-113.8 254.11-254.11 254.11-138.14 0-250.57-110.25-254-247.53 3.48 197 164.24 355.63 362.09 355.63 200.05 0 362.25-162.15 362.25-362.21V93.94Z"
         style={{
-          fill: `url(#${id}-b)`,
+          fill: `url(#kicon-junggu-b)`,
         }}
         transform="translate(-71.83 -93.94)"
       />

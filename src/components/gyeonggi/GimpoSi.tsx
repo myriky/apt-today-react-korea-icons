@@ -1,7 +1,6 @@
 import * as React from "react";
 
 export const GimpoSi = (props: React.SVGProps<SVGSVGElement>) => {
-  const id = React.useId();
   return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +12,7 @@ export const GimpoSi = (props: React.SVGProps<SVGSVGElement>) => {
   >
     <defs>
       <linearGradient
-        id={`${id}-b`}
+        id={`kicon-gimposi-b`}
         x1="0"
         x2="1"
         y1="0"
@@ -26,7 +25,7 @@ export const GimpoSi = (props: React.SVGProps<SVGSVGElement>) => {
         <stop offset="1" stopOpacity={1} stopColor="#9f8125" />
       </linearGradient>
       <linearGradient
-        id={`${id}-d`}
+        id={`kicon-gimposi-d`}
         x1="0"
         x2="1"
         y1="0"
@@ -38,29 +37,29 @@ export const GimpoSi = (props: React.SVGProps<SVGSVGElement>) => {
         <stop offset="0" stopOpacity={1} stopColor="#cab272" />
         <stop offset="1" stopOpacity={1} stopColor="#9f8125" />
       </linearGradient>
-      <clipPath id={`${id}-a`} clipPathUnits="userSpaceOnUse">
+      <clipPath id={`kicon-gimposi-a`} clipPathUnits="userSpaceOnUse">
         <path d="m223.77 375.883-29.968 28.27v-67.85l29.968 16.963z" />
       </clipPath>
-      <clipPath id={`${id}-c`} clipPathUnits="userSpaceOnUse">
+      <clipPath id={`kicon-gimposi-c`} clipPathUnits="userSpaceOnUse">
         <path d="m228.858 353.266 78.028-16.963v67.85l-78.028-28.27z" />
       </clipPath>
     </defs>
     <g
-      clipPath={`url(#${id}-a)`}
+      clipPath={`url(#kicon-gimposi-a)`}
       transform="matrix(5.89536 0 0 -5.89536 -1142.532 2382.626)"
     >
       <path
         d="m223.77 375.883-29.968 28.27v-67.85l29.968 16.963z"
-        fill={`url(#${id}-b)`}
+        fill={`url(#kicon-gimposi-b)`}
       />
     </g>
     <g
-      clipPath={`url(#${id}-c)`}
+      clipPath={`url(#kicon-gimposi-c)`}
       transform="matrix(5.89536 0 0 -5.89536 -1142.532 2382.626)"
     >
       <path
         d="m228.858 353.266 78.028-16.963v67.85l-78.028-28.27z"
-        fill={`url(#${id}-d)`}
+        fill={`url(#kicon-gimposi-d)`}
       />
     </g>
     <path

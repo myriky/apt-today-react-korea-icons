@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.3] - 2026-05-04
+
+### Fixed
+
+- **SSR 다중 인스턴스 시 ID 충돌 — 모든 컴포넌트 해결 (잔여 0건)**
+  - 증상: `renderToStaticMarkup`을 컴포넌트당 별도로 여러 번 호출하면 내부 `React.useId()`가 동일한 값(`:R0:`)을 반환해 `clipPath`/`linearGradient`의 `id`가 페이지 내에서 중복됨. 결과적으로 첫 번째 외 인스턴스에서 그라디언트가 깨지거나 path가 비표시되는 버그(특히 지도 마커처럼 같은 컴포넌트를 다수 띄울 때).
+  - 두 단계 fix:
+    1. **defs 인라인화 (38개)**: `<defs><clipPath>` 정의와 group `transform`을 path 좌표에 미리 굽기. ID 자체가 사라짐. Puppeteer + pixelmatch 픽셀 비교로 변환 전후 시각 동일성 검증(anti-aliasing 임계 내).
+    2. **hardcoded prefix (63개)**: 그라디언트 정의가 디자인적으로 의미 있어 인라인화가 어려운 컴포넌트는 `useId()` 결과를 컴포넌트명 기반 hardcoded prefix(예: `kicon-yonginsi-b`)로 일괄 변환. 같은 컴포넌트의 여러 인스턴스가 같은 ID를 공유하지만 정의가 동일하므로 시각적으로 무해. SSR cross-call/hydration 모두 안전.
+  - 결과: 빌드 dist에서 `React.useId()` 호출 0회. 모든 컴포넌트가 `renderToStaticMarkup` 다중 호출에서 결정적·시각 동일.
+- **AnyangSi의 하드코딩 `id="a"` (참조도 안 되는 dead `<defs>`) 제거** — CSR 환경에서도 다중 인스턴스 시 충돌하던 케이스
+
 ## [1.0.2] - 2026-03-20
 
 ### Fixed

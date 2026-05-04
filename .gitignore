@@ -27,3 +27,18 @@ yarn-error.log*
 .env.local
 .env.*.local
 
+# npm pack tarballs
+*.tgz
+
+# esbuild bundles (build artifacts of test scripts)
+example/*.bundle.cjs
+example/*.bundle.mjs
+example/ssr-regression-after-fix.cjs
+example/visual-test/*.bundle.cjs
+example/visual-test/*.bundle.mjs
+example/visual-test/*.cjs
+
+# visual-test pixel comparison artifacts
+example/visual-test/*.png
+example/visual-test/*.svg
+example/visual-test/output/

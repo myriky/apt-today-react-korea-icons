@@ -159,7 +159,7 @@ function App() {
             {/* Size Control */}
             <div className="flex items-center gap-2 shrink-0">
               <button
-                onClick={() => setIconSize((s) => Math.max(16, s - 8))}
+                onClick={() => setIconSize((s) => Math.max(14, s - 2))}
                 className="p-1.5 rounded-lg text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 aria-label="아이콘 축소"
               >
@@ -169,15 +169,15 @@ function App() {
               </button>
               <input
                 type="range"
-                min={16}
+                min={14}
                 max={128}
-                step={4}
+                step={2}
                 value={iconSize}
                 onChange={(e) => setIconSize(Number(e.target.value))}
                 className="w-20 sm:w-24 accent-blue-500"
               />
               <button
-                onClick={() => setIconSize((s) => Math.min(128, s + 8))}
+                onClick={() => setIconSize((s) => Math.min(128, s + 2))}
                 className="p-1.5 rounded-lg text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 aria-label="아이콘 확대"
               >

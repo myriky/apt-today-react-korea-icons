@@ -9,12 +9,6 @@ export const AnyangSi = (props: React.SVGProps<SVGSVGElement>) => (
     viewBox="0 0 758 758"
     {...props}
   >
-    <defs>
-      <clipPath id="a">
-        <path d="M-1-1h758v758H-1z" />
-      </clipPath>
-    </defs>
-
     <path
       fill="#005EAE"
       fillRule="evenodd"
