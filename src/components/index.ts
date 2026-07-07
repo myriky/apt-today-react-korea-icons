@@ -48,3 +48,6 @@ export * from "./jeju";
 
 // 세종특별자치시
 export * from "./sejong";
+
+// 전남광주통합특별시 (2026-07-01 출범 — 공식 CI 공표 전 placeholder)
+export * from "./jeonnamgwangju";

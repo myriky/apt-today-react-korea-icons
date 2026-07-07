@@ -12,3 +12,9 @@ export * from "./GeyangGu";
 export * from "./IncheonSeoGu";
 export * from "./GanghwaGun";
 export * from "./OngjinGun";
+
+// 2026-07-01 신설 4구 (공식 로고 공표 전 placeholder)
+export * from "./JemulpoGu";
+export * from "./YeongjongGu";
+export * from "./SeohaeGu";
+export * from "./GeomdanGu";
