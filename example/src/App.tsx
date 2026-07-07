@@ -36,6 +36,20 @@ function App() {
     );
   });
 
+  // 시도 단위 섹션 그룹핑 (availableRegions 순서 유지)
+  const groupedIcons = availableRegions
+    .map((region) => ({
+      region,
+      icons: filteredIcons.filter((icon) => icon.regionCode === region.code),
+    }))
+    .filter((group) => group.icons.length > 0);
+
+  // 행정구역 개편 안내 (구 코드는 하위호환을 위해 유지 중)
+  const MERGED_NOTICE: Record<number, string> = {
+    29: "2026-07 전남광주통합특별시(12)로 통합",
+    46: "2026-07 전남광주통합특별시(12)로 통합",
+  };
+
   const handleCopy = useCallback(async (icon: IconInfo) => {
     const importStatement = `import { ${icon.componentName} } from '${PACKAGE_NAME}'`;
     try {
@@ -116,7 +130,10 @@ function App() {
           </div>
 
           <p className="mt-3 text-xs text-gray-400 dark:text-gray-500">
-            {allIcons.length}개 아이콘 &middot; MIT 라이선스 &middot; React &amp; TypeScript
+            {allIcons.length}개 아이콘 &middot; MIT 라이선스 &middot; React &amp; TypeScript &middot;{" "}
+            <a href="#/stress" className="text-blue-500 hover:underline">
+              다중 인스턴스 스트레스 테스트
+            </a>
           </p>
         </div>
       </header>
@@ -215,21 +232,43 @@ function App() {
             </p>
           </div>
         ) : (
-          <div className={`grid gap-3 ${
-            iconSize >= 96
-              ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
-              : iconSize >= 64
-              ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6"
-              : "grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8"
-          }`}>
-            {filteredIcons.map((icon) => (
-              <IconCard
-                key={icon.code}
-                icon={icon}
-                iconSize={iconSize}
-                onCopy={handleCopy}
-                isCopied={copiedName === icon.componentName}
-              />
+          <div className="space-y-10">
+            {groupedIcons.map(({ region, icons }) => (
+              <section key={region.code}>
+                <div className="flex items-center gap-2 mb-4">
+                  {region.component && (
+                    <region.component width={20} height={20} className="shrink-0" />
+                  )}
+                  <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400">
+                    {region.name}
+                  </h3>
+                  <span className="text-xs text-gray-400 dark:text-gray-600">
+                    {icons.length}
+                  </span>
+                  {MERGED_NOTICE[region.code] && (
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400/90">
+                      {MERGED_NOTICE[region.code]}
+                    </span>
+                  )}
+                </div>
+                <div className={`grid gap-3 ${
+                  iconSize >= 96
+                    ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+                    : iconSize >= 64
+                    ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6"
+                    : "grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8"
+                }`}>
+                  {icons.map((icon) => (
+                    <IconCard
+                      key={icon.code}
+                      icon={icon}
+                      iconSize={iconSize}
+                      onCopy={handleCopy}
+                      isCopied={copiedName === icon.componentName}
+                    />
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         )}
