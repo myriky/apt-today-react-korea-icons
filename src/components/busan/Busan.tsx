@@ -1,6 +1,8 @@
 import * as React from "react";
+import { useInstanceSuffix } from "../../useInstanceSuffix";
 
 export const Busan = (props: React.SVGProps<SVGSVGElement>) => {
+  const sfx = useInstanceSuffix();
   return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -9,7 +11,7 @@ export const Busan = (props: React.SVGProps<SVGSVGElement>) => {
   >
     <defs>
       <linearGradient
-        id={`kicon-busan-a`}
+        id={`kicon-busan-a${sfx}`}
         x1="8.83"
         x2="318.52"
         y1="341.35"
@@ -20,7 +22,7 @@ export const Busan = (props: React.SVGProps<SVGSVGElement>) => {
         <stop offset=".8" stopColor="#662483" />
       </linearGradient>
       <linearGradient
-        id={`kicon-busan-b`}
+        id={`kicon-busan-b${sfx}`}
         x1="-11.31"
         x2="223.88"
         y1="42.97"
@@ -32,7 +34,7 @@ export const Busan = (props: React.SVGProps<SVGSVGElement>) => {
         <stop offset=".9" stopColor="#662483" />
       </linearGradient>
       <linearGradient
-        id={`kicon-busan-c`}
+        id={`kicon-busan-c${sfx}`}
         x1="1.48"
         x2="313.77"
         y1="91.56"
@@ -45,7 +47,7 @@ export const Busan = (props: React.SVGProps<SVGSVGElement>) => {
         <stop offset=".8" stopColor="#e6007e" />
       </linearGradient>
       <linearGradient
-        id={`kicon-busan-d`}
+        id={`kicon-busan-d${sfx}`}
         x1="-25.33"
         x2="183.44"
         y1="270.06"
@@ -61,7 +63,7 @@ export const Busan = (props: React.SVGProps<SVGSVGElement>) => {
         <stop offset="1" stopColor="#ed6ea7" />
       </linearGradient>
       <linearGradient
-        id={`kicon-busan-e`}
+        id={`kicon-busan-e${sfx}`}
         x1="121.66"
         x2="145.65"
         y1="201.14"
@@ -77,20 +79,20 @@ export const Busan = (props: React.SVGProps<SVGSVGElement>) => {
     </defs>
     <path
       d="M0 313.94h235.45l78.49-78.49-11.457-3.373L2.14 304.167Z"
-      fill={`url(#kicon-busan-a)`}
+      fill={`url(#kicon-busan-a${sfx})`}
     />
     <path
       d="M0 0v78.48l10.634 2.152L238.366 7.055 235.45 0Z"
-      fill={`url(#kicon-busan-b)`}
+      fill={`url(#kicon-busan-b${sfx})`}
     />
     <path
       d="M209.29 183.13 313.94 78.48 235.45 0 0 78.48l1.449 8.923 203.67 102.355Z"
-      fill={`url(#kicon-busan-c)`}
+      fill={`url(#kicon-busan-c${sfx})`}
     />
-    <path d="M0 78.48v235.46l313.94-78.49L4.636 80.798Z" fill={`url(#kicon-busan-d)`} />
+    <path d="M0 78.48v235.46l313.94-78.49L4.636 80.798Z" fill={`url(#kicon-busan-d${sfx})`} />
     <path
       d="M235.45 0 0 78.48l6.945 3.473L209.29 183.13 313.94 78.48Z"
-      fill={`url(#kicon-busan-e)`}
+      fill={`url(#kicon-busan-e${sfx})`}
       style={{ mixBlendMode: "multiply" }}
     />
   </svg>

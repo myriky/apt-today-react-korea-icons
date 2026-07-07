@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.0.4] - 2026-07-07
+
+### Fixed
+
+- **다중 인스턴스 시 gradient ID 충돌 — 첫 인스턴스가 숨겨진 경우 fill 소실 (63개 컴포넌트)**
+  - 증상: 같은 아이콘을 한 페이지에 여러 번 렌더링할 때, DOM 순서상 첫 번째 인스턴스가 `display:none` 컨테이너(반응형 숨김 블록 등) 안에 있으면 `url(#...)`가 숨겨진 defs로 해석되어 보이는 아이콘의 gradient fill이 통째로 사라짐. apt.today 프로덕션(모바일 전용 `lg:hidden` 블록)에서 발견 — 금천구·중구·동대문구는 완전 비표시, 광명시·용인시·성북구는 부분 렌더링.
+  - 원인: v1.0.3의 "같은 컴포넌트 다중 인스턴스가 같은 ID를 공유해도 정의가 동일하므로 시각 무해" 가정이 첫 인스턴스가 숨겨진 경우 성립하지 않음 (브라우저는 `display:none` 서브트리 안의 paint server를 렌더링에 사용하지 못함).
+  - 수정: `useInstanceSuffix` 훅 도입. SSR 마크업과 첫 클라이언트 렌더는 기존 결정적 공유 ID를 유지하고(cross-call 멱등, hydration mismatch 없음), 클라이언트 마운트 직후(layout effect, paint 전) 인스턴스 고유 접미사(`-i<n>`)로 전환. 그라디언트 사용 63개 컴포넌트에 일괄 적용.
+  - 참고: JS 없이 SSR 정적 마크업만 사용하는 환경에서는 여전히 공유 ID이므로, 그 경우 첫 인스턴스를 숨기지 않도록 배치 필요.
+- **BucheonSi(부천시) gradient 참조 오타** — `url(#a)`가 존재하지 않는 ID를 가리켜 로고의 그라디언트 조각이 렌더링되지 않던 버그 (v1.0.0부터 존재). `kicon-bucheonsi-a` 참조로 수정되어 하단 사선 조각 복원.
+- **BusanNamGu(부산 남구) dangling filter 참조 제거** — `url(#filter1453)`, `url(#filter1603)`이 존재하지 않는 filter를 가리켜 해당 path 2개가 브라우저에서 렌더링되지 않던 버그.
+- **GapyeongGun(가평군) gradient 참조 형식 통일** — 문자열 리터럴 참조가 접미사 미적용으로 남던 문제.
+
+### Added
+
+- example에 **다중 인스턴스 스트레스 테스트 페이지**(`#/stress`) 추가 — 전 아이콘 N회 반복 + "첫 인스턴스 display:none" 재현 토글 + `url(#)` 참조가 숨겨진 defs로 해석되는지 자동 감지 + 고유 ID 기준본과 나란히 비교.
+
+### Changed
+
+- SSR 회귀 스크립트를 `example/ssr-regression-after-fix.mjs` → `scripts/ssr-regression.mjs`로 이동 (패키지가 훅을 사용하게 되면서 react 이중 복사본 문제를 피하기 위해 루트의 react/react-dom 단일 쌍으로 실행). 루트 devDependencies에 `react-dom` 추가.
+- example Vite 설정에 `resolve.dedupe: ["react", "react-dom"]` 추가 (link 패키지의 훅 사용 대응).
+
 ## [1.0.3] - 2026-05-04
 
 ### Fixed

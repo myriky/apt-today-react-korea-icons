@@ -1,6 +1,8 @@
 import * as React from "react";
+import { useInstanceSuffix } from "../../useInstanceSuffix";
 
 export const GimpoSi = (props: React.SVGProps<SVGSVGElement>) => {
+  const sfx = useInstanceSuffix();
   return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +14,7 @@ export const GimpoSi = (props: React.SVGProps<SVGSVGElement>) => {
   >
     <defs>
       <linearGradient
-        id={`kicon-gimposi-b`}
+        id={`kicon-gimposi-b${sfx}`}
         x1="0"
         x2="1"
         y1="0"
@@ -25,7 +27,7 @@ export const GimpoSi = (props: React.SVGProps<SVGSVGElement>) => {
         <stop offset="1" stopOpacity={1} stopColor="#9f8125" />
       </linearGradient>
       <linearGradient
-        id={`kicon-gimposi-d`}
+        id={`kicon-gimposi-d${sfx}`}
         x1="0"
         x2="1"
         y1="0"
@@ -37,29 +39,29 @@ export const GimpoSi = (props: React.SVGProps<SVGSVGElement>) => {
         <stop offset="0" stopOpacity={1} stopColor="#cab272" />
         <stop offset="1" stopOpacity={1} stopColor="#9f8125" />
       </linearGradient>
-      <clipPath id={`kicon-gimposi-a`} clipPathUnits="userSpaceOnUse">
+      <clipPath id={`kicon-gimposi-a${sfx}`} clipPathUnits="userSpaceOnUse">
         <path d="m223.77 375.883-29.968 28.27v-67.85l29.968 16.963z" />
       </clipPath>
-      <clipPath id={`kicon-gimposi-c`} clipPathUnits="userSpaceOnUse">
+      <clipPath id={`kicon-gimposi-c${sfx}`} clipPathUnits="userSpaceOnUse">
         <path d="m228.858 353.266 78.028-16.963v67.85l-78.028-28.27z" />
       </clipPath>
     </defs>
     <g
-      clipPath={`url(#kicon-gimposi-a)`}
+      clipPath={`url(#kicon-gimposi-a${sfx})`}
       transform="matrix(5.89536 0 0 -5.89536 -1142.532 2382.626)"
     >
       <path
         d="m223.77 375.883-29.968 28.27v-67.85l29.968 16.963z"
-        fill={`url(#kicon-gimposi-b)`}
+        fill={`url(#kicon-gimposi-b${sfx})`}
       />
     </g>
     <g
-      clipPath={`url(#kicon-gimposi-c)`}
+      clipPath={`url(#kicon-gimposi-c${sfx})`}
       transform="matrix(5.89536 0 0 -5.89536 -1142.532 2382.626)"
     >
       <path
         d="m228.858 353.266 78.028-16.963v67.85l-78.028-28.27z"
-        fill={`url(#kicon-gimposi-d)`}
+        fill={`url(#kicon-gimposi-d${sfx})`}
       />
     </g>
     <path

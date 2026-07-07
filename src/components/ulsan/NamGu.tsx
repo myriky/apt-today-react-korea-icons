@@ -1,6 +1,8 @@
 import * as React from "react";
+import { useInstanceSuffix } from "../../useInstanceSuffix";
 
 export const UlsanNamGu = (props: React.SVGProps<SVGSVGElement>) => {
+  const sfx = useInstanceSuffix();
   return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -11,11 +13,11 @@ export const UlsanNamGu = (props: React.SVGProps<SVGSVGElement>) => {
     {...props}
   >
     <defs>
-      <clipPath id={`kicon-namgu-a`}>
+      <clipPath id={`kicon-namgu-a${sfx}`}>
         <path d="M-1 49h760v659H-1z" />
       </clipPath>
     </defs>
-    <g fillRule="evenodd" clipPath={`url(#kicon-namgu-a)`} transform="translate(1 -49)">
+    <g fillRule="evenodd" clipPath={`url(#kicon-namgu-a${sfx})`} transform="translate(1 -49)">
       <path
         fill="#F78D1D"
         d="M702 138c0 49.135-39.865 89-89 89-49.166 0-89-39.865-89-89 0-49.166 39.834-89 89-89s89 39.865 89 89Z"
