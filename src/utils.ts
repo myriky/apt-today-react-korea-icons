@@ -284,9 +284,10 @@ const regionData: RegionInfo[] = [
   },
   {
     // 2026-07-01 광주광역시(29) + 전라남도(46) 통합 출범 — 공식 CI 공표 전까지 placeholder 아이콘
+    // 축약형은 "광주특별시" (2026-07-07 확정)
     code: 12,
     name: "전남광주통합특별시",
-    shortName: "전남광주통합",
+    shortName: "광주특별시",
     englishName: "JeonnamGwangju",
     component: JeonnamGwangju,
   },

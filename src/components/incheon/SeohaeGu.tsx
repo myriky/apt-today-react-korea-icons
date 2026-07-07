@@ -2,26 +2,11 @@ import * as React from "react";
 
 /**
  * 인천광역시 서해구 (2026-07-01 신설, 구 서구 잔여 지역 명칭 변경)
- *
- * ⚠️ 임시 placeholder — 신설 구의 공식 로고가 아직 공표되지 않아
- * 중립 배지 형태로 제공합니다. 공식 심볼 공표 시 교체 예정입니다.
  */
 export const SeohaeGu = (props: React.SVGProps<SVGSVGElement>) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" {...props}>
-      <circle cx="60" cy="60" r="55" fill="#F1F5F9" stroke="#CBD5E1" strokeWidth="5" />
-      <text
-        x="60"
-        y="63"
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fontFamily="'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif"
-        fontSize="34"
-        fontWeight="700"
-        fill="#475569"
-      >
-        서해
-      </text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530.8 366.34" {...props}>
+      <path d="M730.23 888.53c-13.1 51.47-134.4 65.07-270.94 30.34S222.66 814.25 235.75 762.75s134.41-65 271-30.32 236.58 104.62 223.48 156.1ZM509.62 738.25c-84.06-21.4-162 0-174.17 47.65S381.63 889.6 465.69 911s162.05 0 174.18-47.65-46.19-103.74-130.25-125.1Z" fill="#0062ff" transform="translate(-234.6 -571.76)"/><path d="M330.91 810.82s139.29-79.61 86.23-225.55l99.5 23.22s9.95 152.57-185.73 202.33Z" fill="#00a200" transform="translate(-234.6 -571.76)"/><path d="M702.38 688.09 765.4 572s-109.46-6.62-165.83 49.76S457 797.55 347.49 817.44c0 0 92.49-9.77 152.57-39.79 72.94-36.48 129.35-129.36 202.32-89.56Z" fill="#ff601f" transform="translate(-234.6 -571.76)"/>
     </svg>
   );
 };

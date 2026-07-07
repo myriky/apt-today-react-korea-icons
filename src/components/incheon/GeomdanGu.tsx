@@ -2,26 +2,11 @@ import * as React from "react";
 
 /**
  * 인천광역시 검단구 (2026-07-01 신설, 구 서구 북부 분리)
- *
- * ⚠️ 임시 placeholder — 신설 구의 공식 로고가 아직 공표되지 않아
- * 중립 배지 형태로 제공합니다. 공식 심볼 공표 시 교체 예정입니다.
  */
 export const GeomdanGu = (props: React.SVGProps<SVGSVGElement>) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" {...props}>
-      <circle cx="60" cy="60" r="55" fill="#F1F5F9" stroke="#CBD5E1" strokeWidth="5" />
-      <text
-        x="60"
-        y="63"
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fontFamily="'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif"
-        fontSize="34"
-        fontWeight="700"
-        fill="#475569"
-      >
-        검단
-      </text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.95 32.55" {...props}>
+      <g><g><path d="M39.49 10.85H28.14a1.14 1.14 0 0 0-1 .82l-5.41 20.07a.6.6 0 0 0 .6.81h4.45a10 10 0 0 0 9.7-7.45l3.6-13.43a.6.6 0 0 0-.59-.82" fill="#f7931d"/><path d="M27 0H.72A.71.71 0 0 0 .1 1.07l4.49 7.79a4 4 0 0 0 3.44 2h18.48a1.13 1.13 0 0 0 1-.81l1.82-6.76A2.42 2.42 0 0 0 27 0M70.44 30.39 66 22.61a4 4 0 0 0-3.44-2h-15a4 4 0 0 0-3.84 2.95L42 30a1.2 1.2 0 0 0 1.15 1.51h26.67a.72.72 0 0 0 .62-1.12" fill="#152a75"/><path d="M46.48 0a4.55 4.55 0 0 0-4.14 3.27L40.52 10a.61.61 0 0 0 .6.82h23.77a6 6 0 0 0 4.56-2.13l6.33-7.54A.72.72 0 0 0 75.23 0Z" fill="#00b6bd"/></g></g>
     </svg>
   );
 };

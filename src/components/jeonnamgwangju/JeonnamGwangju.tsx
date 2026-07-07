@@ -12,27 +12,15 @@ export const JeonnamGwangju = (props: React.SVGProps<SVGSVGElement>) => {
       <circle cx="60" cy="60" r="55" fill="#F1F5F9" stroke="#CBD5E1" strokeWidth="5" />
       <text
         x="60"
-        y="49"
+        y="63"
         textAnchor="middle"
         dominantBaseline="middle"
         fontFamily="'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif"
-        fontSize="27"
+        fontSize="21"
         fontWeight="700"
         fill="#475569"
       >
-        전남
-      </text>
-      <text
-        x="60"
-        y="78"
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fontFamily="'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif"
-        fontSize="27"
-        fontWeight="700"
-        fill="#475569"
-      >
-        광주
+        광주특별시
       </text>
     </svg>
   );
