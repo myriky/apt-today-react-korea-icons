@@ -1,25 +1,17 @@
 import * as React from "react";
 
-let instanceCounter = 0;
-
-// SSR(react-dom/server)에서 useLayoutEffect 경고를 피하기 위한 isomorphic effect
-const useIsomorphicLayoutEffect =
-  typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
-
 /**
  * 같은 아이콘을 한 페이지에 여러 번 렌더링할 때 gradient/clipPath ID 충돌을 방지하는 훅.
  *
- * - SSR 마크업과 첫 클라이언트 렌더는 빈 접미사("")를 반환해 컴포넌트명 기반
- *   결정적 공유 ID를 유지한다 (cross-call 멱등, hydration mismatch 없음).
- * - 클라이언트 마운트 직후(paint 전) 인스턴스 고유 접미사로 전환한다.
- *   공유 ID 상태에서는 url(#...)가 문서상 첫 번째 defs로 해석되는데, 그 인스턴스가
- *   display:none 컨테이너(예: 반응형 숨김 블록) 안에 있으면 보이는 아이콘의
- *   fill이 통째로 사라지기 때문이다.
+ * `React.useId()` 기반 (v1.1.1):
+ * - react-server 서브셋(RSC)에 포함된 훅이라 서버 컴포넌트에서도 렌더 가능
+ *   (v1.1.0의 useState+useLayoutEffect 방식은 RSC에서 `useState is not a function` 빌드 실패)
+ * - SSR과 hydration에서 같은 값이 보장되어 mismatch 없음
+ * - 첫 렌더부터 인스턴스 고유 접미사가 채워지므로, 공유 ID 상태의 첫 페인트에서
+ *   숨겨진 첫 인스턴스로 인해 fill이 사라지는 문제도 발생하지 않음
+ * - 요구 peer: React 18+ (useId)
  */
 export function useInstanceSuffix(): string {
-  const [suffix, setSuffix] = React.useState("");
-  useIsomorphicLayoutEffect(() => {
-    setSuffix(`-i${++instanceCounter}`);
-  }, []);
-  return suffix;
+  // useId 반환값은 ":r0:" 형태 — SVG id/url(#...) 조각에서 콜론이 문제될 수 있어 제거
+  return React.useId().replace(/:/g, "");
 }

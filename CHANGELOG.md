@@ -1,6 +1,23 @@
 # Changelog
 
-## [1.1.0] - 2026-07-07
+## [1.1.1] - 2026-07-08
+
+### Fixed
+
+- **RSC(React Server Components) 빌드 실패 수정** — 1.1.0의 `useInstanceSuffix`가
+  `useState`+`useLayoutEffect`를 사용해, Next.js App Router 서버 컴포넌트(react-server 서브셋에는
+  해당 훅이 없음)에서 아이콘 렌더 시 `useState is not a function`으로 빌드/SSR이 실패하던 문제.
+  `React.useId()` 기반으로 교체 — 서버/클라이언트 양쪽에서 동작하고, 첫 렌더부터 인스턴스 고유
+  id가 채워져 1.1.0 방식의 부수 결함(첫 페인트 공유 id 충돌, setState 재렌더, hydration 시 DOM
+  mutation)도 함께 해소. 상세 분석: apt-today-web `docs/20260707-react-korea-icons-1.1.0-rsc-build-failure.md`
+
+### Changed
+
+- peerDependencies `react >=17.0.0` → `>=18.0.0` (`useId` 요구)
+- **1.1.0은 npm에서 unpublish됨** (RSC 환경 빌드 실패). 1.1.0의 기능(행정구역 개편 아이콘 등)은
+  1.1.1에 모두 포함
+
+## [1.1.0] - 2026-07-07 (unpublished)
 
 ### Added
 
