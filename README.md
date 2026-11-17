@@ -193,17 +193,21 @@ const file = iconFile(code);
 - 파일 이름은 코드가 아니라 컴포넌트 이름입니다. 여러 코드가 같은 로고를 쓰면(예: 전남광주 통합 전후 코드) 같은 파일을 가리킵니다.
 - `<img>`로 넣은 SVG는 문서와 id 공간이 분리되므로 같은 로고를 여러 개 띄워도 그라디언트 id가 충돌하지 않습니다.
 - `currentColor` 등 CSS로 색을 바꾸는 용도에는 쓸 수 없습니다. 그런 경우는 컴포넌트를 쓰세요.
-- 정적 SVG는 v1.1.1 컴포넌트 렌더와 256px·16px·13px에서 픽셀 비교해 생성합니다(`scripts/compare-static-svg.mjs`).
+- 정적 SVG는 컴포넌트 렌더 출력을 SVGO로 최적화한 것으로, 컴포넌트와 256px·16px·13px에서 픽셀 비교해 검증합니다(`scripts/compare-static-svg.mjs`).
+- Tailwind 기본 스타일(`img { height: auto }`)을 쓰면 `height` 속성이 무시되므로 `style={{ width, height }}`로 크기를 고정하세요.
 
 ## SSR / 다중 인스턴스 안전성
 
-이 패키지의 모든 컴포넌트는 SSR 환경에서 안전하게 동작합니다.
+248개 중 184개 컴포넌트는 `id`가 없습니다(정의를 path에 인라인화). 그라디언트·clipPath가 필요한 64개는 `id`를 쓰며, 아래처럼 동작합니다.
 
-- `renderToStaticMarkup`을 컴포넌트당 별도로 여러 번 호출해도 ID 충돌 없음
-- Next.js App Router의 서버 컴포넌트와 client component hydration에서 mismatch warning 없음
-- 지도 마커처럼 같은 컴포넌트를 한 화면에 N개 띄워도 그라디언트가 정상 렌더
+| 렌더 방식 | id | 결과 |
+| --- | --- | --- |
+| 한 React 트리 안에 여러 개 (CSR, SSR, RSC, hydration) | 인스턴스마다 다름 (`kicon-yonginsi-aR1`, `…-aR2`) | 안전. hydration mismatch 없음, 서버 컴포넌트에서도 렌더 가능 |
+| `renderToStaticMarkup`을 **따로** 여러 번 호출 (지도 마커를 문자열로 만드는 경우 등) | 호출마다 **같음** (`kicon-yonginsi-aR0`) | 정의가 같아 보통은 문제없음. 단, DOM 순서상 첫 번째 것이 `display:none` 안에 있으면 나머지의 그라디언트가 사라질 수 있음 |
 
-> 내부 구현: 변환 가능한 컴포넌트는 `<defs>`/`<clipPath>` 정의를 path 좌표에 인라인화하고, 그라디언트 정의가 필요한 컴포넌트는 컴포넌트명 기반 hardcoded prefix(예: `kicon-yonginsi-b`)를 사용합니다. 같은 컴포넌트의 여러 인스턴스는 같은 ID를 공유하지만 정의가 동일하므로 시각적으로 무해하고, `React.useId()`가 만드는 hydration 의존성을 제거해 SSR/CSR 어느 환경에서나 결정적입니다.
+지도 마커처럼 문자열 SVG가 필요하거나 같은 로고를 많이 띄우는 곳은 [정적 SVG(`<img>`)](#정적-svg와-meta-번들-없이-이미지로-쓰기)를 쓰세요. `<img>`로 넣은 SVG는 문서와 id 공간이 분리되어 위 문제가 생기지 않습니다.
+
+> 내부 구현(v1.1.1~): id는 `kicon-{컴포넌트명}-{글자}` 접두사 + `React.useId()` 기반 인스턴스 접미사(콜론 제거)입니다. `useId`는 같은 트리 안에서만 고유하므로, 트리가 따로인 `renderToStaticMarkup` 호출끼리는 같은 값이 나옵니다. 검사: `scripts/ssr-regression.mjs`.
 
 ## 지원 행정구역
 

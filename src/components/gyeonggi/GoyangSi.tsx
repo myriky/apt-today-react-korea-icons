@@ -4,7 +4,7 @@ export const GoyangSi = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
-    id="레이어_1"
+   
     x="0px"
     y="0px"
     version="1.1"

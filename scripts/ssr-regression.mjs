@@ -1,5 +1,7 @@
-// Fix 후 회귀 테스트 — fix가 적용된 컴포넌트는 ID 자체가 없어 cross-call 충돌이 사라져야 함
-// 변환되지 않은 컴포넌트(C/D/E 케이스)는 여전히 useId 패턴이라 cross-call에서 같은 id가 나옴 (알려진 잔여 이슈)
+// SSR / 다중 인스턴스 회귀 검사 (README "SSR / 다중 인스턴스 안전성"과 같은 내용)
+// - id 없는 컴포넌트: 따로 렌더해도 id·url(#) 참조 자체가 없음
+// - id 있는 컴포넌트(useInstanceSuffix): 같은 트리에서는 인스턴스마다 id가 다르고 참조가 모두 해석됨,
+//   따로 렌더하면 출력이 같음(= id도 같음, 알려진 한계 — 정적 SVG <img> 사용 권장)
 import { renderToStaticMarkup } from "react-dom/server";
 import { createElement as h, Fragment } from "react";
 import {
@@ -7,7 +9,9 @@ import {
   AnyangSi, DongdaemunGu,
 } from "@apt.today/react-korea-icons";
 import { readFileSync, readdirSync, statSync } from "fs";
-import { join } from "path";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+import * as Lib from "@apt.today/react-korea-icons";
 
 const hr = () => console.log("─".repeat(72));
 const log = (s) => console.log(s);
@@ -75,13 +79,13 @@ const refsInPage = page.match(/url\(#[^)]+\)/g) || [];
 expect("페이지 내 url(#…) 참조도 없음", refsInPage.length === 0);
 
 hr();
-log("옵션 D 적용 — 그라디언트 컴포넌트도 cross-call 안전 (hardcoded prefix)");
+log("그라디언트 컴포넌트 — 따로 렌더해도 결정적 (kicon- 접두사)");
 hr();
 const dong1 = renderToStaticMarkup(h(DongdaemunGu, {}));
 const dong2 = renderToStaticMarkup(h(DongdaemunGu, {}));
 expect("DongdaemunGu cross-call 출력 동일 (멱등)", dong1 === dong2, `len=${dong1.length}`);
-expect("DongdaemunGu에 useId 결과 :R…: 패턴 없음", !/:R[0-9a-z]*:/.test(dong1));
-expect("DongdaemunGu에 hardcoded kicon- prefix 사용", /kicon-dongdaemungu/.test(dong1));
+expect("DongdaemunGu id에 콜론(:R…:) 없음", !/:R[0-9a-z]*:/.test(dong1));
+expect("DongdaemunGu에 kicon- 접두사 사용", /kicon-dongdaemungu/.test(dong1));
 
 hr();
 log("영향 범위 카운트");
@@ -94,19 +98,47 @@ function walk(dir, files = []) {
   }
   return files;
 }
-const root = "/Users/riky/Documents/workspace/react-seoul-icons/src/components";
+const root = join(dirname(fileURLToPath(import.meta.url)), "../src/components");
 const files = walk(root);
-let useIdN = 0, hardcodedN = 0;
+let suffixN = 0, staticIdN = 0;
 for (const f of files) {
   const src = readFileSync(f, "utf8");
-  if (src.includes("useId")) useIdN++;
-  if (!src.includes("useId") && /<(?:clipPath|mask)\s+id="[^"$`{}]+"/.test(src)) hardcodedN++;
+  if (src.includes("useInstanceSuffix()")) suffixN++;
+  // 접미사 없이 문자열로 고정된 id (여러 개 띄우면 DOM에 id 중복)
+  else if (/\sid="[^"]+"/.test(src)) staticIdN++;
 }
 log(`  전체 컴포넌트: ${files.length}`);
-log(`  useId 사용 (잔여 cross-call 이슈 보유): ${useIdN}`);
-log(`  하드코딩 id (CSR도 깨지는 케이스): ${hardcodedN}`);
-expect("하드코딩 id 0개", hardcodedN === 0);
-expect("useId 사용 컴포넌트 100→0 (옵션 D 일괄 적용)", useIdN === 0);
+log(`  useInstanceSuffix 사용(id 있음): ${suffixN}`);
+log(`  고정 문자열 id: ${staticIdN}`);
+expect("고정 문자열 id 0개", staticIdN === 0);
+
+hr();
+log("v1.1.1~ 설계 — id가 있는 모든 컴포넌트 전수 검사");
+hr();
+const idsOf = (html) => [...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
+const refsOf = (html) => [...html.matchAll(/url\(#([^)]+)\)|href="#([^"]+)"/g)].map((m) => m[1] ?? m[2]);
+let withIds = 0, sameTreeBad = [], danglingBad = [], crossCallSame = 0, crossCallNondet = [];
+for (const [name, Comp] of Object.entries(Lib)) {
+  if (typeof Comp !== "function") continue;
+  const one = renderToStaticMarkup(h(Comp, {}));
+  if (idsOf(one).length === 0) continue;
+  withIds++;
+  // 같은 트리 2개: id 집합이 겹치지 않아야 함
+  const two = renderToStaticMarkup(h(Fragment, null, h(Comp, { key: 1 }), h(Comp, { key: 2 })));
+  const all = idsOf(two);
+  if (new Set(all).size !== all.length) sameTreeBad.push(name);
+  // 모든 url(#)/href(#) 참조가 같은 출력 안의 id를 가리켜야 함
+  const idset = new Set(all);
+  if (refsOf(two).some((r) => !idset.has(r))) danglingBad.push(name);
+  // 따로 렌더 2회: 결정적(같은 출력)이고, 따라서 id도 같음 — README에 적은 알려진 한계
+  const again = renderToStaticMarkup(h(Comp, {}));
+  if (again !== one) crossCallNondet.push(name);
+  else crossCallSame++;
+}
+log(`  id가 있는 컴포넌트: ${withIds}`);
+expect("같은 트리 2개 → id 중복 없음 (전수)", sameTreeBad.length === 0, sameTreeBad.join(","));
+expect("url(#)/href(#) 참조가 모두 같은 출력 안에서 해석됨 (전수)", danglingBad.length === 0, danglingBad.join(","));
+expect("따로 렌더 2회 → 출력 동일 (결정적, id도 같음: 알려진 한계)", crossCallNondet.length === 0, `${crossCallSame}/${withIds}`);
 
 hr();
 log(`결과: PASS ${pass} / FAIL ${fail}`);

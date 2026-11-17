@@ -3,11 +3,11 @@ import * as React from "react";
 export const NamyangjuSi = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    id="_레이어_2"
+   
     viewBox="0 0 453.54 145.03"
     {...props}
   >
-    <g id="_레이어_1-2">
+    <g>
       <path
         d="M382 14.79 369.38 2.17a7.386 7.386 0 0 0-5.23-2.16h-170.5c-42.22 0-76.45 32.47-76.45 72.51 0 7.21 1.12 14.18 3.18 20.76h16.73a55.117 55.117 0 0 1-4.04-20.76c0-31.88 27.12-57.73 60.57-57.73h188.35Z"
         fill="#00a73c"
