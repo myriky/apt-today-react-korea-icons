@@ -1,5 +1,18 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+
+- **대구 중구·금산군·함안군 아이콘 원본 교체** — 나무위키 원본은 path가 지나치게 잘게 쪼개져 있어(각 380~470KB)
+  Wikimedia Commons(Public domain)의 깃발 SVG(`Flag of Junggu, Daegu.svg`, `Flag of Geumsan.svg`,
+  `Flag of Haman.svg`)에서 글자를 뺀 심볼만 잘라 사용. 컴포넌트와 정적 SVG 모두 해당.
+  - dist/svg: 대구 중구 116,800 → 18,689B, 금산군 107,174 → 7,402B, 함안군 103,982 → 3,443B
+  - 대구 중구·금산군은 기존 렌더와 256px 0%/0.05% 차이(사실상 동일)
+  - **함안군은 다시 그린 원본이라 모양이 조금 달라짐**(아치 테두리가 더 굵고 초록색이 더 밝음, 256px 12% 차이).
+    Commons 설명상 2017년 함안군 상징물 조례 규격
+  - dist/svg 합계  1457684 bytes
+
 ## [1.2.1] - 2026-11-17
 
 ### Fixed
