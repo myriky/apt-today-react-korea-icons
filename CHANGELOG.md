@@ -1,5 +1,24 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- **정적 SVG 동봉** — `dist/svg/{componentName}.svg` 248개 (`@apt.today/react-korea-icons/svg/*`).
+  컴포넌트 렌더 출력을 SVGO로 최적화(정밀도는 viewBox 크기에 비례, 256px 표시 기준 오차 0.1px).
+  합계 4,281,271 → 1,756,106 bytes. v1.1.1 컴포넌트 렌더와 256·16·13px 픽셀 비교
+  (`scripts/compare-static-svg.mjs`).
+- **`@apt.today/react-korea-icons/meta` 서브패스** — 컴포넌트를 import하지 않는 동기 조회 함수
+  (`iconFile`, `getByCode`, `findByName`, `getByRegion`, 목록, `isValid`). `iconFile`은 일반구 코드를
+  소속 시 아이콘으로 폴백. `utils`와 결과 일치 회귀 검사 `scripts/meta-regression.mjs`.
+- `package.json` `exports`에 `./meta`, `./svg/*`, `./package.json` 추가
+
+### Changed
+
+- 지역 메타데이터를 `src/data.ts`로, 조회 규칙을 `src/registry.ts`로 분리 (`utils`와 `/meta`가 공유).
+  기존 컴포넌트와 `utils` 공개 동작은 바뀌지 않음
+- `yarn build`가 `tsup` 뒤에 `scripts/build-svg.mjs`를 실행 (devDependency `svgo` 추가)
+
 ## [1.1.1] - 2026-07-08
 
 ### Fixed

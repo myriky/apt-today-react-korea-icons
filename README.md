@@ -160,6 +160,41 @@ interface RegionInfo {
 }
 ```
 
+## 정적 SVG와 `/meta` (번들 없이 이미지로 쓰기)
+
+아이콘을 React 컴포넌트로 import하면 `utils`를 쓰는 순간 248개 아이콘 전체가 번들에 들어갑니다.
+작은 크기의 고정 색 로고(목록 카드, 지도 마커 등)는 정적 SVG 파일과 `/meta`를 쓰면 JS 번들에 아이콘이 들어가지 않습니다.
+
+- `@apt.today/react-korea-icons/svg/{componentName}.svg` — SVGO로 최적화한 정적 SVG (패키지 경로 `dist/svg/`)
+- `@apt.today/react-korea-icons/meta` — 컴포넌트를 import하지 않는 조회 함수 (동기)
+
+```tsx
+import { iconFile, findByName } from "@apt.today/react-korea-icons/meta";
+
+iconFile(11680);              // "GangnamGu.svg"
+iconFile(41135);              // "SeongnamSi.svg" — 일반구는 소속 시 아이콘으로 폴백
+findByName("강남")?.code;      // 11680
+
+// dist/svg를 앱의 정적 경로(예: public/region-icons/)로 복사해 두고 <img>로 사용
+const file = iconFile(code);
+{file && <img src={`/region-icons/${file}`} alt="" width={16} height={16} />}
+```
+
+| 함수 | 설명 | 반환 타입 |
+| --- | --- | --- |
+| `iconFile(code)` | 코드 → 정적 SVG 파일 이름. 5자리 코드에 아이콘이 없고 끝자리가 0이 아니면 끝자리를 0으로 바꿔 한 번 더 찾음 | `string \| null` |
+| `getByCode(code)` | `utils.getInfo`와 같은 규칙 (컴포넌트 대신 `componentName`) | `IconMeta \| RegionMeta \| null` |
+| `findByName(name, options?)` | `utils.findByName`과 같은 규칙, 결과는 메타데이터 | `IconMeta \| null` |
+| `getByRegion(codeOrName)` | 특정 시도의 시군구 목록 | `IconMeta[]` |
+| `getAllRegions()` / `getAvailableRegions()` / `getRegionsWithIcons()` | 시도 목록 | `RegionMeta[]` |
+| `getAll()` | 모든 시군구 | `IconMeta[]` |
+| `isValid(code)` | 유효한 코드인지 확인 | `boolean` |
+
+- 파일 이름은 코드가 아니라 컴포넌트 이름입니다. 여러 코드가 같은 로고를 쓰면(예: 전남광주 통합 전후 코드) 같은 파일을 가리킵니다.
+- `<img>`로 넣은 SVG는 문서와 id 공간이 분리되므로 같은 로고를 여러 개 띄워도 그라디언트 id가 충돌하지 않습니다.
+- `currentColor` 등 CSS로 색을 바꾸는 용도에는 쓸 수 없습니다. 그런 경우는 컴포넌트를 쓰세요.
+- 정적 SVG는 v1.1.1 컴포넌트 렌더와 256px·16px·13px에서 픽셀 비교해 생성합니다(`scripts/compare-static-svg.mjs`).
+
 ## SSR / 다중 인스턴스 안전성
 
 이 패키지의 모든 컴포넌트는 SSR 환경에서 안전하게 동작합니다.

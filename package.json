@@ -10,13 +10,20 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
-    }
+    },
+    "./meta": {
+      "types": "./dist/meta.d.ts",
+      "import": "./dist/meta.mjs",
+      "require": "./dist/meta.js"
+    },
+    "./svg/*": "./dist/svg/*",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && node scripts/build-svg.mjs",
     "dev": "tsup --watch",
     "prepare": "yarn build"
   },
@@ -49,6 +56,7 @@
     "@types/react": "^18.2.45",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "svgo": "4.0.1",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
