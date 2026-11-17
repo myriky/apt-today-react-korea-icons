@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [1.2.0] - 2026-11-17
 
 ### Added
 
@@ -18,6 +18,7 @@
 - 지역 메타데이터를 `src/data.ts`로, 조회 규칙을 `src/registry.ts`로 분리 (`utils`와 `/meta`가 공유).
   기존 컴포넌트와 `utils` 공개 동작은 바뀌지 않음
 - `yarn build`가 `tsup` 뒤에 `scripts/build-svg.mjs`를 실행 (devDependency `svgo` 추가)
+- example에 정적 SVG + `/meta` 사용 예제 페이지(`#/static`) 추가
 
 ## [1.1.1] - 2026-07-08
 

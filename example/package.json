@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "copy-icons": "node scripts/copy-static-icons.mjs",
+    "predev": "yarn copy-icons",
+    "prebuild": "yarn copy-icons",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",

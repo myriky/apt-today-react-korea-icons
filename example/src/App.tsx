@@ -133,6 +133,10 @@ function App() {
             {allIcons.length}개 아이콘 &middot; MIT 라이선스 &middot; React &amp; TypeScript &middot;{" "}
             <a href="#/stress" className="text-blue-500 hover:underline">
               다중 인스턴스 스트레스 테스트
+            </a>{" "}
+            &middot;{" "}
+            <a href="#/static" className="text-blue-500 hover:underline">
+              정적 SVG + /meta 사용 예제
             </a>
           </p>
         </div>

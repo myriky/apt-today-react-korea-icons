@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import StressTest from './StressTest'
+import StaticSvg from './StaticSvg'
 import './index.css'
 
 function Root() {
@@ -11,7 +12,9 @@ function Root() {
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
-  return hash === '#/stress' ? <StressTest /> : <App />
+  if (hash === '#/stress') return <StressTest />
+  if (hash === '#/static') return <StaticSvg />
+  return <App />
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
