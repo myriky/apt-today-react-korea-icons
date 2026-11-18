@@ -180,6 +180,22 @@ const file = iconFile(code);
 {file && <img src={`/region-icons/${file}`} alt="" width={16} height={16} />}
 ```
 
+아이콘이 고정이면 파일 하나를 직접 import할 수도 있습니다. 번들러마다 import 값의 형태가 다릅니다.
+
+```tsx
+import seoul from "@apt.today/react-korea-icons/svg/Seoul.svg";
+
+// Vite: URL 문자열 (4KB 미만 파일은 data URI로 인라인)
+<img src={seoul} width={32} height={32} alt="서울" />
+
+// Next.js: next/image에 그대로 넘기면 Turbopack·webpack 모두 동작
+import Image from "next/image";
+<Image src={seoul} width={32} height={32} alt="서울" />
+
+// Next.js에서 <img>를 쓸 때: Turbopack(16 기본)은 문자열, webpack은 { src, width, height } 객체
+const url = typeof seoul === "string" ? seoul : seoul.src;
+```
+
 | 함수 | 설명 | 반환 타입 |
 | --- | --- | --- |
 | `iconFile(code)` | 코드 → 정적 SVG 파일 이름. 5자리 코드에 아이콘이 없고 끝자리가 0이 아니면 끝자리를 0으로 바꿔 한 번 더 찾음 | `string \| null` |
