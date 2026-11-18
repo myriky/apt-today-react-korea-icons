@@ -42,3 +42,6 @@ example/visual-test/*.cjs
 example/visual-test/*.png
 example/visual-test/*.svg
 example/visual-test/output/
+
+# 로컬 작업 문서 (커밋하지 않음)
+docs/
