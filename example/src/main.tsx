@@ -5,6 +5,9 @@ import StressTest from './StressTest'
 import StaticSvg from './StaticSvg'
 import './index.css'
 
+// 어느 페이지(#/static, #/stress)로 바로 들어와도 시스템 다크 모드를 따르도록 렌더 전에 적용
+document.documentElement.classList.toggle('dark', window.matchMedia('(prefers-color-scheme: dark)').matches)
+
 function Root() {
   const [hash, setHash] = useState(window.location.hash)
   useEffect(() => {

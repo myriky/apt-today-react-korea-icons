@@ -12,12 +12,8 @@ function App() {
   const [activeRegion, setActiveRegion] = useState<number | null>(null);
   const [iconSize, setIconSize] = useState(48);
   const [copiedName, setCopiedName] = useState<string | null>(null);
-  const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
-    return false;
-  });
+  // 초기값은 main.tsx가 <html>에 붙인 dark 클래스 (다른 페이지에서 돌아와도 토글 상태 유지)
+  const [darkMode, setDarkMode] = useState(() => document.documentElement.classList.contains("dark"));
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
@@ -109,7 +105,7 @@ function App() {
             대한민국 행정구역 아이콘
           </h1>
           <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            광역/기초자치단체 공식 로고를 React 컴포넌트로 제공합니다.
+            광역/기초자치단체 공식 로고를 React 컴포넌트로 제공합니다.{" "}
             <br className="hidden sm:block" />
             클릭하면 import 구문이 복사됩니다. 상단 아이콘으로 지역 필터링이 가능합니다.
           </p>
